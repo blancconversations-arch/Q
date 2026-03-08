@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLANC // PULSE — Global Structural Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&family=Exo+2:ital,wght@0,100;0,300;0,400;1,100&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --void:#00000a;--deep:#020210;
+  --glass:rgba(3,6,22,0.93);--glass2:rgba(5,10,30,0.88);
+  --pulse:#00c8ff;--pulse-d:rgba(0,200,255,0.14);--pulse-g:rgba(0,200,255,0.38);
+  --hot:#ff2d55;--hot-d:rgba(255,45,85,0.17);
+  --warm:#ff8c00;--warm-d:rgba(255,140,0,0.14);
+  --cool:#00ff9d;--cool-d:rgba(0,255,157,0.12);
+  --violet:#a855f7;--violet-d:rgba(168,85,247,0.17);
+  --gold:#ffd700;--gold-d:rgba(255,215,0,0.1);
+  --txt:rgba(185,210,255,0.92);--txt2:rgba(120,150,210,0.62);--txt3:rgba(70,100,170,0.42);
+  --bdr:rgba(50,90,200,0.17);--bdr2:rgba(50,90,200,0.08);
+  --mono:'Share Tech Mono',monospace;--disp:'Rajdhani',sans-serif;--body:'Exo 2',sans-serif;
+}
+html,body{width:100%;height:100%;background:var(--void);color:var(--txt);font-family:var(--body);overflow:hidden;user-select:none}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,5,20,0.055) 3px,rgba(0,5,20,0.055) 4px)}
+#root{display:grid;grid-template-rows:42px 1fr 110px;grid-template-columns:214px 1fr 280px;
+  grid-template-areas:"hdr hdr hdr" "lft cnv rgt" "bar bar bar";width:100vw;height:100vh}
+
+/* ══ TOPBAR ══ */
+#hdr{grid-area:hdr;display:flex;align-items:center;padding:0 14px;gap:0;
+  background:rgba(1,3,14,0.98);border-bottom:1px solid var(--bdr);z-index:500}
+.logo{font-family:var(--disp);font-size:15px;font-weight:700;letter-spacing:.22em;
+  color:var(--pulse);text-shadow:0 0 20px var(--pulse-g),0 0 40px rgba(0,200,255,.12);
+  margin-right:18px;white-space:nowrap;flex-shrink:0}
+.logo em{color:rgba(255,255,255,.22);font-style:normal;font-weight:300}
+.ntabs{display:flex;gap:1px;margin-right:12px}
+.ntab{font-family:var(--mono);font-size:8px;letter-spacing:.17em;padding:4px 11px;
+  background:transparent;border:1px solid transparent;color:var(--txt3);cursor:pointer;transition:all .15s}
+.ntab:hover{color:var(--txt2);border-color:var(--bdr)}
+.ntab.on{color:var(--pulse);border-color:rgba(0,200,255,.32);background:rgba(0,200,255,.05);text-shadow:0 0 8px var(--pulse-g)}
+.vsep{width:1px;height:22px;background:var(--bdr);margin:0 8px;flex-shrink:0}
+.mgrp{display:flex;gap:2px}
+.mbtn{font-family:var(--mono);font-size:7px;letter-spacing:.17em;padding:3px 9px;
+  border:1px solid var(--bdr);background:transparent;color:var(--txt3);cursor:pointer;transition:all .2s;
+  clip-path:polygon(3px 0%,100% 0%,calc(100% - 3px) 100%,0% 100%)}
+.mbtn:hover{color:var(--txt2);border-color:rgba(0,200,255,.38)}
+.mbtn.on{background:rgba(0,200,255,.08);border-color:var(--pulse);color:var(--pulse);text-shadow:0 0 6px var(--pulse-g)}
+.lbtn{font-family:var(--mono);font-size:6.5px;letter-spacing:.13em;padding:2px 6px;
+  border:1px solid transparent;background:transparent;color:var(--txt3);cursor:pointer;transition:all .15s;border-radius:1px}
+.lbtn:hover{color:var(--txt2);border-color:var(--bdr)}
+.lbtn.on{color:var(--warm);border-color:rgba(255,140,0,.4);background:rgba(255,140,0,.07)}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:13px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--cool);
+  box-shadow:0 0 8px var(--cool),0 0 14px rgba(0,255,157,.4);animation:pd 2s ease-in-out infinite}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.live-lbl{font-family:var(--mono);font-size:7px;color:var(--cool);letter-spacing:.2em;display:flex;align-items:center;gap:5px}
+.ts{font-family:var(--mono);font-size:8px;color:var(--txt2);letter-spacing:.07em}
+.opmode{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.24em;
+  padding:3px 10px;border:1px solid rgba(0,200,255,.3);color:var(--pulse);
+  background:rgba(0,200,255,.05);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%)}
+.ombtn{font-family:var(--mono);font-size:7px;letter-spacing:.17em;padding:3px 9px;
+  border:1px solid var(--bdr);background:transparent;color:var(--txt3);cursor:pointer;transition:all .18s;
+  clip-path:polygon(3px 0%,100% 0%,calc(100% - 3px) 100%,0% 100%)}
+.ombtn:hover{color:var(--txt2)}
+.ombtn.on{background:rgba(0,200,255,.09);border-color:var(--pulse);color:var(--pulse)}
+
+/* ══ LEFT ══ */
+#lft{grid-area:lft;background:var(--glass);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden;z-index:10}
+.ps{padding:9px 11px;border-bottom:1px solid var(--bdr2)}
+.plbl{font-family:var(--mono);font-size:6.5px;letter-spacing:.27em;color:var(--txt3);
+  margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.plbl::before{content:'';width:10px;height:1px;background:var(--bdr)}
+.srch{width:100%;background:rgba(8,15,50,.45);border:1px solid var(--bdr);border-radius:1px;
+  padding:5px 8px;font-family:var(--mono);font-size:8px;color:var(--txt);outline:none;letter-spacing:.04em;transition:border-color .2s}
+.srch::placeholder{color:var(--txt3)}
+.srch:focus{border-color:rgba(0,200,255,.42);box-shadow:0 0 10px var(--pulse-d)}
+.etags{display:flex;flex-wrap:wrap;gap:3px}
+.etag{font-family:var(--mono);font-size:6.5px;letter-spacing:.14em;padding:2px 7px;border-radius:1px;cursor:pointer;transition:all .15s}
+.etag-e{color:var(--hot);border:1px solid rgba(255,45,85,.32);background:var(--hot-d)}
+.etag-e:hover{background:rgba(255,45,85,.28)}
+.etag-s{color:var(--warm);border:1px solid rgba(255,140,0,.32);background:var(--warm-d)}
+.elist{flex:1;overflow-y:auto}
+.elist::-webkit-scrollbar{width:2px}
+.elist::-webkit-scrollbar-thumb{background:var(--bdr)}
+.ei{padding:7px 11px;border-bottom:1px solid rgba(50,90,200,.06);cursor:pointer;transition:background .13s;position:relative}
+.ei::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .13s}
+.ei:hover{background:rgba(0,200,255,.04)}
+.ei:hover::before{background:var(--pulse)}
+.ei.sel{background:rgba(0,200,255,.07)}
+.ei.sel::before{background:var(--pulse);box-shadow:0 0 6px var(--pulse-g)}
+.ei-r1{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.ei-nm{font-family:var(--body);font-weight:300;font-size:9.5px;color:var(--txt)}
+.ei-sc{font-family:var(--mono);font-size:8.5px;color:var(--pulse)}
+.rbadge{font-family:var(--mono);font-size:5.5px;letter-spacing:.18em;padding:1px 5px;border-radius:1px;font-weight:700}
+.rb-E{color:var(--hot);border:1px solid rgba(255,45,85,.35);background:var(--hot-d)}
+.rb-S{color:var(--warm);border:1px solid rgba(255,140,0,.3);background:var(--warm-d)}
+.rb-C{color:var(--violet);border:1px solid rgba(168,85,247,.3);background:var(--violet-d)}
+.rb-T{color:var(--pulse);border:1px solid rgba(0,200,255,.3);background:var(--pulse-d)}
+.rb-N{color:var(--txt3);border:1px solid var(--bdr)}
+.ei-dm{font-family:var(--mono);font-size:6px;color:var(--txt3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ══ CANVAS ══ */
+#cnv{grid-area:cnv;position:relative;overflow:hidden;background:var(--void)}
+#gc{width:100%;height:100%;display:block;cursor:crosshair}
+.g-hud{position:absolute;pointer-events:none}
+.ent-hud{top:14px;left:50%;transform:translateX(-50%);display:flex;gap:18px;align-items:center}
+.em{text-align:center}.ev{font-family:var(--disp);font-size:17px;font-weight:700;line-height:1}
+.el{font-family:var(--mono);font-size:6px;letter-spacing:.2em;color:var(--txt3);margin-top:2px}
+.esep{width:1px;height:26px;background:var(--bdr)}
+.rhud{bottom:18px;left:18px;font-family:var(--disp);font-size:10px;font-weight:700;
+  letter-spacing:.28em;padding:5px 14px;border:1px solid;
+  clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);pointer-events:none}
+.rh-E{color:var(--hot);border-color:rgba(255,45,85,.45);background:var(--hot-d);animation:flk 1.6s ease-in-out infinite}
+.rh-S{color:var(--warm);border-color:rgba(255,140,0,.42);background:var(--warm-d)}
+.rh-C{color:var(--violet);border-color:rgba(168,85,247,.42);background:var(--violet-d)}
+.rh-T{color:var(--pulse);border-color:rgba(0,200,255,.42);background:var(--pulse-d)}
+.rh-N{color:var(--cool);border-color:rgba(0,255,157,.35);background:var(--cool-d)}
+@keyframes flk{0%,100%{opacity:1}50%{opacity:.7}}
+.fn-hud{bottom:18px;right:18px;max-width:230px;font-family:var(--mono);font-size:7px;
+  line-height:1.65;color:var(--txt3);letter-spacing:.04em;font-style:italic;text-align:right}
+
+/* Zoom controls */
+.zoom-ctrl{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;pointer-events:auto}
+.zbtn{width:26px;height:26px;background:rgba(3,6,22,.92);border:1px solid var(--bdr);
+  color:var(--txt2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;font-family:var(--mono)}
+.zbtn:hover{border-color:var(--pulse);color:var(--pulse)}
+
+/* Context menu */
+#ctxmenu{position:fixed;z-index:9500;background:rgba(2,5,20,.97);border:1px solid var(--bdr);
+  border-top:1px solid rgba(0,200,255,.4);min-width:200px;display:none;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+  backdrop-filter:blur(20px)}
+#ctxmenu.vis{display:block}
+.ctx-header{font-family:var(--disp);font-size:10px;font-weight:700;color:var(--txt);
+  padding:8px 12px 6px;border-bottom:1px solid var(--bdr);letter-spacing:.08em}
+.ctx-sub{font-family:var(--mono);font-size:6.5px;color:var(--txt3);padding:0 12px 6px;letter-spacing:.1em}
+.ctx-item{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--txt2);
+  padding:7px 12px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:8px;border:none;
+  background:transparent;width:100%;text-align:left}
+.ctx-item:hover{background:rgba(0,200,255,.07);color:var(--pulse)}
+.ctx-item .ci-icon{font-size:10px;width:16px;text-align:center}
+.ctx-sep{height:1px;background:var(--bdr2);margin:2px 0}
+
+/* ══ RIGHT ══ */
+#rgt{grid-area:rgt;background:var(--glass);border-left:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden;z-index:10}
+.ih{padding:9px 13px 8px;border-bottom:1px solid var(--bdr);background:rgba(0,200,255,.025)}
+.it{font-family:var(--mono);font-size:6.5px;letter-spacing:.25em;color:var(--txt3);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between}
+.ir{font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.07em;color:var(--txt);line-height:1.2}
+.ic{font-family:var(--mono);font-size:7px;color:var(--txt3);margin-top:2px}
+.deep-btn{font-family:var(--mono);font-size:6.5px;letter-spacing:.14em;padding:3px 9px;
+  background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.3);color:var(--hot);
+  cursor:pointer;transition:all .15s;pointer-events:auto}
+.deep-btn:hover{background:rgba(255,45,85,.16)}
+.itabs{display:flex;border-bottom:1px solid var(--bdr)}
+.itab{flex:1;font-family:var(--mono);font-size:6px;letter-spacing:.13em;padding:5px 0;text-align:center;
+  cursor:pointer;border:none;background:transparent;color:var(--txt3);border-bottom:1px solid transparent;transition:all .15s}
+.itab:hover{color:var(--txt2)}
+.itab.on{color:var(--pulse);border-bottom-color:var(--pulse);background:rgba(0,200,255,.04)}
+.ibody{flex:1;overflow-y:auto;padding:9px 13px}
+.ibody::-webkit-scrollbar{width:2px}
+.ibody::-webkit-scrollbar-thumb{background:var(--bdr)}
+.vs{margin-bottom:11px}
+.vt{font-family:var(--mono);font-size:6.5px;letter-spacing:.22em;color:var(--txt3);
+  margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid var(--bdr2)}
+.vbar{display:grid;grid-template-columns:88px 1fr 34px;align-items:center;gap:7px;margin-bottom:6px}
+.vl{font-family:var(--mono);font-size:6.5px;letter-spacing:.12em;color:var(--txt3)}
+.vtr{height:3px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden}
+.vf{height:100%;border-radius:1px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.vv{font-family:var(--mono);font-size:7.5px;color:var(--txt2);text-align:right}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px}
+.dc{padding:6px 7px;border:1px solid var(--bdr);background:rgba(4,8,28,.55);border-radius:1px}
+.dcl{font-family:var(--mono);font-size:5.5px;letter-spacing:.17em;color:var(--txt3);margin-bottom:2px}
+.dcv{font-family:var(--mono);font-size:13px;font-weight:700}
+.fc-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.fcl{font-family:var(--mono);font-size:6.5px;letter-spacing:.1em;color:var(--txt3);width:72px;flex-shrink:0}
+.fct{flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden}
+.fcf{height:100%;border-radius:1px;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.fcp{font-family:var(--mono);font-size:8px;width:32px;text-align:right}
+.fi{display:flex;gap:7px;padding:5px 0;border-bottom:1px solid rgba(50,90,200,.05);
+  font-family:var(--mono);font-size:7px;color:var(--txt3);line-height:1.55}
+.fd{flex-shrink:0;margin-top:4px;width:3px;height:3px;border-radius:50%;background:var(--txt3)}
+.ev-item{padding:6px 0;border-bottom:1px solid rgba(50,90,200,.06);cursor:pointer}
+.ev-item:hover .evt{color:var(--pulse)}
+.evt{font-family:var(--body);font-weight:300;font-size:9px;color:var(--txt);line-height:1.4;margin-bottom:3px;transition:color .15s}
+.evm{display:flex;gap:6px;align-items:center}
+.evd{font-family:var(--mono);font-size:5.5px;letter-spacing:.15em;padding:1px 5px;border-radius:1px;flex-shrink:0}
+.evd-c{color:var(--hot);background:var(--hot-d);border:1px solid rgba(255,45,85,.25)}
+.evd-e{color:var(--warm);background:var(--warm-d);border:1px solid rgba(255,140,0,.2)}
+.evd-p{color:var(--violet);background:var(--violet-d);border:1px solid rgba(168,85,247,.2)}
+.evd-k{color:var(--cool);background:var(--cool-d);border:1px solid rgba(0,255,157,.2)}
+.evd-n{color:var(--gold);background:var(--gold-d);border:1px solid rgba(255,215,0,.2)}
+.evd-s{color:var(--pulse);background:var(--pulse-d);border:1px solid rgba(0,200,255,.2)}
+.evt2{font-family:var(--mono);font-size:6.5px;color:var(--txt3);margin-left:auto;white-space:nowrap}
+.dr-row{padding:5px 0;border-bottom:1px solid rgba(50,90,200,.05)}
+.dr-hd{display:flex;justify-content:space-between;margin-bottom:2px}
+.dr-dm{font-family:var(--mono);font-size:7.5px;letter-spacing:.11em;color:var(--txt2)}
+.dr-ct{font-family:var(--mono);font-size:7.5px;color:var(--pulse)}
+.dr-rc{font-family:var(--mono);font-size:6px;color:var(--txt3);letter-spacing:.1em}
+.dr-tr{height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden;margin-top:4px}
+.dr-tf{height:100%;border-radius:1px}
+
+/* Deep Dive overlay */
+#deepdive{position:absolute;inset:0;background:rgba(1,3,14,.97);z-index:400;display:none;
+  flex-direction:column;backdrop-filter:blur(8px)}
+#deepdive.vis{display:flex}
+.dd-hdr{padding:10px 14px;border-bottom:1px solid var(--bdr);background:rgba(255,45,85,.04);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.dd-title{font-family:var(--disp);font-size:11px;font-weight:700;color:var(--txt);letter-spacing:.06em}
+.dd-sub{font-family:var(--mono);font-size:6.5px;color:var(--hot);letter-spacing:.22em;margin-bottom:3px}
+.dd-back{font-family:var(--mono);font-size:7px;letter-spacing:.13em;padding:4px 10px;
+  background:rgba(255,255,255,.04);border:1px solid var(--bdr);color:var(--txt2);cursor:pointer;border-radius:1px;transition:all .15s}
+.dd-back:hover{border-color:var(--pulse);color:var(--pulse)}
+.dd-body{flex:1;overflow-y:auto;padding:12px 14px}
+.dd-body::-webkit-scrollbar{width:2px}
+.dd-body::-webkit-scrollbar-thumb{background:var(--bdr)}
+.dd-section{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bdr2)}
+.dd-sh{font-family:var(--mono);font-size:6.5px;letter-spacing:.22em;color:var(--txt3);
+  padding-bottom:5px;border-bottom:1px solid var(--bdr2);margin-bottom:8px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center}
+.dd-sh:hover{color:var(--txt2)}
+.cascade-item{display:flex;justify-content:space-between;align-items:center;
+  padding:5px 0;border-bottom:1px solid rgba(50,90,200,.05);font-family:var(--mono);font-size:7.5px}
+.cascade-bar{height:2px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden;margin-top:3px}
+.cascade-fill{height:100%;border-radius:1px}
+
+/* Timeline panel */
+#timeline-panel{position:absolute;inset:0;background:rgba(1,3,14,.97);z-index:300;display:none;flex-direction:column}
+#timeline-panel.vis{display:flex}
+.tl-hdr{padding:10px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tl-title{font-family:var(--disp);font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--txt)}
+.tl-close{font-family:var(--mono);font-size:7px;padding:3px 9px;background:rgba(255,255,255,.04);
+  border:1px solid var(--bdr);color:var(--txt2);cursor:pointer;border-radius:1px}
+.tl-close:hover{border-color:var(--pulse);color:var(--pulse)}
+.tl-body{flex:1;overflow-y:auto;padding:12px 14px}
+.tl-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr2)}
+.tl-time{font-family:var(--mono);font-size:7px;color:var(--txt3);width:60px;flex-shrink:0;padding-top:1px}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:2px;border:1px solid currentColor}
+.tl-content{flex:1}
+.tl-region{font-family:var(--body);font-size:9px;color:var(--txt);font-weight:400;margin-bottom:2px}
+.tl-detail{font-family:var(--mono);font-size:7px;color:var(--txt3);line-height:1.5}
+.tl-badge{font-family:var(--mono);font-size:6px;letter-spacing:.15em;padding:1px 5px;border-radius:1px;margin-left:6px}
+
+/* Export panel */
+#export-panel{position:absolute;inset:0;background:rgba(1,3,14,.97);z-index:300;display:none;flex-direction:column}
+#export-panel.vis{display:flex}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.exp-card{padding:14px;border:1px solid var(--bdr);background:rgba(5,10,30,.6);border-radius:1px;cursor:pointer;transition:all .18s}
+.exp-card:hover{border-color:var(--pulse);background:rgba(0,200,255,.04)}
+.exp-icon{font-size:22px;margin-bottom:8px}
+.exp-title{font-family:var(--disp);font-size:11px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.exp-desc{font-family:var(--mono);font-size:7px;color:var(--txt3);line-height:1.5}
+
+/* Model panel */
+#model-panel{position:absolute;inset:0;background:rgba(1,3,14,.97);z-index:300;display:none;flex-direction:column}
+#model-panel.vis{display:flex}
+.mod-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.mod-metric{padding:10px;border:1px solid var(--bdr);background:rgba(5,10,30,.6);text-align:center}
+.mod-mv{font-family:var(--disp);font-size:18px;font-weight:700}
+.mod-ml{font-family:var(--mono);font-size:6px;letter-spacing:.2em;color:var(--txt3);margin-top:3px}
+
+/* Differential strip */
+#diff-strip{position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:200;
+  background:rgba(2,5,20,.97);border:1px solid var(--bdr);border-top:1px solid rgba(255,45,85,.3);
+  border-bottom:none;display:none;min-width:560px;pointer-events:auto}
+#diff-strip.vis{display:flex}
+.ds-label{padding:8px 12px;border-right:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:center;min-width:90px}
+.ds-title{font-family:var(--mono);font-size:6.5px;letter-spacing:.17em;color:var(--hot);margin-bottom:2px}
+.ds-ab{font-family:var(--mono);font-size:6px;color:var(--txt3)}
+.ds-deltas{flex:1;display:flex;align-items:center;justify-content:space-around;padding:8px 12px}
+.ds-delta{text-align:center;min-width:70px}
+.ds-dv{font-family:var(--mono);font-size:12px;font-weight:700}
+.ds-dl{font-family:var(--mono);font-size:6.5px;color:var(--txt3);letter-spacing:.12em;margin-bottom:3px}
+.ds-close{padding:0 12px;border-left:1px solid var(--bdr);display:flex;align-items:center}
+.ds-x{font-family:var(--mono);font-size:7px;padding:4px 8px;background:rgba(255,255,255,.03);
+  border:1px solid var(--bdr);color:var(--txt3);cursor:pointer;border-radius:1px}
+.ds-x:hover{border-color:var(--hot);color:var(--hot)}
+
+/* ══ BOTTOM ══ */
+#bar{grid-area:bar;background:rgba(1,3,14,.98);border-top:1px solid var(--bdr);display:flex;align-items:stretch;overflow:hidden;z-index:200}
+.bsec{padding:7px 12px;border-right:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:center;min-width:80px}
+.bsl{font-family:var(--mono);font-size:5.5px;letter-spacing:.24em;color:var(--txt3);margin-bottom:3px}
+.bsv{font-family:var(--disp);font-size:20px;font-weight:700;line-height:1}
+.bss{font-family:var(--mono);font-size:6px;color:var(--txt3);margin-top:2px;letter-spacing:.07em}
+.ticker-w{flex:1;position:relative;overflow:hidden;display:flex;align-items:center}
+.tf-l{position:absolute;left:0;top:0;bottom:0;width:20px;background:linear-gradient(90deg,rgba(1,3,14,1),transparent);z-index:2;pointer-events:none}
+.tf-r{position:absolute;right:0;top:0;bottom:0;width:20px;background:linear-gradient(270deg,rgba(1,3,14,1),transparent);z-index:2;pointer-events:none}
+.ticker-track{display:flex;animation:ticker 55s linear infinite;white-space:nowrap;align-items:center}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tki{display:inline-flex;align-items:center;gap:8px;padding:0 18px;
+  border-right:1px solid rgba(50,90,200,.12);font-family:var(--mono);font-size:7.5px;color:var(--txt2);white-space:nowrap;cursor:pointer;transition:color .15s}
+.tki:hover{color:var(--pulse)}
+.tki-src{font-size:5.5px;letter-spacing:.16em;padding:1px 5px;border-radius:1px}
+.tki-sc{font-size:8.5px;color:var(--pulse)}
+.tki-rg{font-size:6.5px;color:var(--txt3)}
+.bar-r{display:flex;align-items:center;padding:0 11px;gap:9px;border-left:1px solid var(--bdr)}
+.pi{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.pi:hover .pir{border-color:currentColor;opacity:.85}
+.pil{font-family:var(--mono);font-size:5.5px;letter-spacing:.17em;color:var(--txt3)}
+.pir{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9.5px;font-weight:700;position:relative;transition:all .3s}
+.pir::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;opacity:.28}
+.pir::after{content:'';position:absolute;inset:4px;border-radius:50%;border:1px solid currentColor;opacity:.12}
+
+/* Tooltip */
+#tt{position:fixed;pointer-events:none;z-index:8000;opacity:0;transition:opacity .12s;min-width:185px}
+#tt.vis{opacity:1}
+.tti{background:rgba(1,4,20,.97);border:1px solid var(--bdr);border-top:1px solid rgba(0,200,255,.42);
+  padding:9px 11px;backdrop-filter:blur(18px);
+  clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.ttr{font-family:var(--disp);font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--txt);
+  margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid var(--bdr)}
+.ttrow{display:flex;justify-content:space-between;gap:12px;margin-bottom:2px}
+.ttk{font-family:var(--mono);font-size:6.5px;letter-spacing:.13em;color:var(--txt3)}
+.ttv{font-family:var(--mono);font-size:7.5px;color:var(--txt)}
+
+/* Notification toast */
+#toast{position:fixed;bottom:130px;left:50%;transform:translateX(-50%);
+  background:rgba(0,200,255,.12);border:1px solid rgba(0,200,255,.35);
+  font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:var(--pulse);
+  padding:7px 18px;border-radius:1px;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none}
+#toast.vis{opacity:1}
+
+/* Color helpers */
+.c-hot{color:var(--hot)}.c-warm{color:var(--warm)}.c-cool{color:var(--cool)}
+.c-pulse{color:var(--pulse)}.c-violet{color:var(--violet)}.c-gold{color:var(--gold)}.c-txt2{color:var(--txt2)}
+</style>
+</head>
+<body>
+<div id="root">
+
+<!-- TOPBAR -->
+<div id="hdr">
+  <div class="logo">BLANC <em>//</em> PULSE</div>
+  <div class="ntabs">
+    <button class="ntab on" onclick="setNav(this,'instrument')">INSTRUMENT</button>
+    <button class="ntab" onclick="setNav(this,'timeline')">TIMELINE</button>
+    <button class="ntab" onclick="setNav(this,'export')">EXPORT</button>
+    <button class="ntab" onclick="setNav(this,'model')">MODEL</button>
+  </div>
+  <div class="vsep"></div>
+  <div class="mgrp">
+    <button class="mbtn on" onclick="setMapMode(this,'GRID')">GRID</button>
+    <button class="mbtn" onclick="setMapMode(this,'TENSION')">TENSION</button>
+    <button class="mbtn" onclick="setMapMode(this,'RUPTURE')">RUPTURE</button>
+    <button class="mbtn" onclick="setMapMode(this,'FLOW')">FLOW</button>
+    <button class="mbtn" onclick="setMapMode(this,'CONN')">CONN</button>
+    <button class="mbtn" onclick="setMapMode(this,'CLUST')">CLUST</button>
+  </div>
+  <div class="vsep"></div>
+  <div class="mgrp">
+    <button class="lbtn on" data-layer="energy" onclick="toggleLayer(this)">ENERGY</button>
+    <button class="lbtn on" data-layer="conflict" onclick="toggleLayer(this)">CONFLICT</button>
+    <button class="lbtn" data-layer="econ" onclick="toggleLayer(this)">ECON</button>
+    <button class="lbtn" data-layer="climate" onclick="toggleLayer(this)">CLIMATE</button>
+    <button class="lbtn" data-layer="military" onclick="toggleLayer(this)">MIL</button>
+    <button class="lbtn" data-layer="supply" onclick="toggleLayer(this)">SUPPLY</button>
+    <button class="lbtn" data-layer="political" onclick="toggleLayer(this)">POL</button>
+    <button class="lbtn" data-layer="social" onclick="toggleLayer(this)">SOC</button>
+    <button class="lbtn" data-layer="food" onclick="toggleLayer(this)">FOOD</button>
+    <button class="lbtn" data-layer="hazards" onclick="toggleLayer(this)">HAZ</button>
+  </div>
+  <div class="vsep"></div>
+  <div class="mgrp">
+    <button class="mbtn" onclick="setHorizon(this,'NOW')">NOW</button>
+    <button class="mbtn on" onclick="setHorizon(this,'3M')">3M</button>
+    <button class="mbtn" onclick="setHorizon(this,'1Y')">1Y</button>
+    <button class="mbtn" onclick="setHorizon(this,'5Y')">5Y</button>
+  </div>
+  <div class="hdr-r">
+    <div class="live-lbl"><div class="live-dot"></div>LIVE</div>
+    <div class="ts" id="clk">2026-03-06 19:49:58 UTC</div>
+    <div class="opmode" id="opm">PREDICT</div>
+    <div class="mgrp">
+      <button class="ombtn" onclick="setOpMode(this,'OBSERVE')">OBSERVE</button>
+      <button class="ombtn on" onclick="setOpMode(this,'PREDICT')">PREDICT</button>
+      <button class="ombtn" onclick="setOpMode(this,'SIMULATE')">SIMULATE</button>
+    </div>
+  </div>
+</div>
+
+<!-- LEFT -->
+<div id="lft">
+  <div class="ps"><input class="srch" placeholder="SEARCH REGION..." id="srch" oninput="filterRegions(this.value)"></div>
+  <div class="ps">
+    <div class="plbl">Emerging Transitions</div>
+    <div class="etags" id="etags"></div>
+  </div>
+  <div class="ps" style="padding-bottom:4px">
+    <div class="plbl" style="margin-bottom:0">Priority Vectors
+      <span style="margin-left:auto;font-family:var(--mono);font-size:6px;color:var(--txt3)">ΔΣ CV CT</span>
+    </div>
+  </div>
+  <div class="elist" id="elist"></div>
+</div>
+
+<!-- CANVAS -->
+<div id="cnv">
+  <canvas id="gc"></canvas>
+
+  <!-- Entropy HUD -->
+  <div class="g-hud ent-hud">
+    <div class="em"><div class="ev c-hot" id="h-an">4</div><div class="el">ANOMALIES</div></div>
+    <div class="esep"></div>
+    <div class="em"><div class="ev c-violet" id="h-cp">4</div><div class="el">COUPLING</div></div>
+    <div class="esep"></div>
+    <div class="em"><div class="ev c-pulse" id="h-en">0.81</div><div class="el">ENTROPY Δ%</div></div>
+    <div class="esep"></div>
+    <div class="em"><div class="ev c-warm" id="h-dm">8</div><div class="el">DOMAINS</div></div>
+    <div class="esep"></div>
+    <div class="em"><div class="ev c-cool" id="h-hz">3M</div><div class="el">HORIZON</div></div>
+  </div>
+
+  <div class="g-hud rhud rh-E" id="rhud">FIELD: ESCALATING</div>
+  <div class="g-hud fn-hud" id="fnhud">Pressure 63.6 · Deviation Δ1.0 · Regime STABLE<br>Cross-domain reinforcement active</div>
+
+  <!-- Zoom controls -->
+  <div class="zoom-ctrl">
+    <button class="zbtn" onclick="zoomIn()" title="Zoom in">+</button>
+    <button class="zbtn" onclick="zoomOut()" title="Zoom out">−</button>
+    <button class="zbtn" onclick="resetView()" title="Reset" style="font-size:9px">⌂</button>
+  </div>
+
+  <!-- Timeline overlay -->
+  <div id="timeline-panel">
+    <div class="tl-hdr">
+      <div class="tl-title">EVENT TIMELINE</div>
+      <button class="tl-close" onclick="closePanel('timeline-panel')">← BACK</button>
+    </div>
+    <div class="tl-body" id="tl-body"></div>
+  </div>
+
+  <!-- Export overlay -->
+  <div id="export-panel">
+    <div class="tl-hdr">
+      <div class="tl-title">EXPORT</div>
+      <button class="tl-close" onclick="closePanel('export-panel')">← BACK</button>
+    </div>
+    <div style="padding:14px">
+      <div style="font-family:var(--mono);font-size:7px;color:var(--txt3);margin-bottom:12px;letter-spacing:.12em">SELECT FORMAT · CURRENT STATE: <span id="exp-region" style="color:var(--pulse)">NANGARHAR</span></div>
+      <div class="exp-grid">
+        <div class="exp-card" onclick="exportJSON()"><div class="exp-icon">{ }</div><div class="exp-title">JSON Brief</div><div class="exp-desc">Full structural vector + evidence pack + forecast in machine-readable format</div></div>
+        <div class="exp-card" onclick="exportCSV()"><div class="exp-icon">⊞</div><div class="exp-title">CSV Data</div><div class="exp-desc">Tabular export of all active regions, regimes and pressure scores</div></div>
+        <div class="exp-card" onclick="exportHTML()"><div class="exp-icon">⬡</div><div class="exp-title">HTML Report</div><div class="exp-desc">Printable intelligence brief with provenance chain and falsification conditions</div></div>
+        <div class="exp-card" onclick="copyURL()"><div class="exp-icon">⟳</div><div class="exp-title">Share URL</div><div class="exp-desc">Copy permalink to current view with selected region and active layers</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Model overview -->
+  <div id="model-panel">
+    <div class="tl-hdr">
+      <div class="tl-title">MODEL OVERVIEW</div>
+      <button class="tl-close" onclick="closePanel('model-panel')">← BACK</button>
+    </div>
+    <div style="padding:14px;overflow-y:auto;flex:1">
+      <div class="mod-metrics">
+        <div class="mod-metric"><div class="mod-mv c-hot">4</div><div class="mod-ml">EMERGENT ZONES</div></div>
+        <div class="mod-metric"><div class="mod-mv c-violet">6</div><div class="mod-ml">COUPLING PAIRS</div></div>
+        <div class="mod-metric"><div class="mod-mv c-pulse">0.81</div><div class="mod-ml">GLOBAL ENTROPY</div></div>
+        <div class="mod-metric"><div class="mod-mv c-warm">87%</div><div class="mod-ml">CONFLICT PRESSURE</div></div>
+        <div class="mod-metric"><div class="mod-mv c-gold">71%</div><div class="mod-ml">ENERGY PRESSURE</div></div>
+        <div class="mod-metric"><div class="mod-mv c-cool">95%</div><div class="mod-ml">MAX CONFIDENCE</div></div>
+      </div>
+      <div id="model-cards"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- RIGHT -->
+<div id="rgt">
+  <div class="ih">
+    <div class="it">
+      <span>● STRUCTURAL INSPECTOR</span>
+      <button class="deep-btn" onclick="openDeepDive()">DEEP DIVE ↗</button>
+    </div>
+    <div class="ir" id="ir">Nangarhar — Afghanistan</div>
+    <div class="ic" id="ic">34.0° · 78.0° · 09:36:01 UTC</div>
+  </div>
+  <div class="itabs">
+    <button class="itab on" onclick="setTab(this,'state')">STATE</button>
+    <button class="itab" onclick="setTab(this,'drivers')">DRIVERS</button>
+    <button class="itab" onclick="setTab(this,'traj')">TRAJ</button>
+    <button class="itab" onclick="setTab(this,'evidence')">EVIDENCE</button>
+    <button class="itab" onclick="setTab(this,'prov')">PROV</button>
+  </div>
+  <div class="ibody" id="ibody"></div>
+
+  <!-- Deep Dive overlay inside right panel -->
+  <div id="deepdive">
+    <div class="dd-hdr">
+      <div>
+        <div class="dd-sub">DEEP DIVE MODE</div>
+        <div class="dd-title" id="dd-title">Nangarhar — Afghanistan</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--txt3);margin-top:2px" id="dd-meta">P:63.6 · Δ:40 · C:95%</div>
+      </div>
+      <button class="dd-back" onclick="closeDeepDive()">← BACK</button>
+    </div>
+    <div class="dd-body" id="dd-body"></div>
+  </div>
+</div>
+
+<!-- BOTTOM -->
+<div id="bar">
+  <div class="bsec"><div class="bsl">Emerging</div><div class="bsv c-hot" id="b-em">4</div><div class="bss">ZONES</div></div>
+  <div class="bsec"><div class="bsl">Escalating</div><div class="bsv c-warm" id="b-es">0</div><div class="bss">ACTIVE</div></div>
+  <div class="bsec"><div class="bsl">Domains</div><div class="bsv c-pulse" id="b-dm">8</div><div class="bss">SIGNALS</div></div>
+  <div class="bsec"><div class="bsl">Field</div><div class="bsv c-violet" id="b-fl">ESCLG</div><div class="bss">STATE</div></div>
+  <div class="ticker-w">
+    <div class="tf-l"></div>
+    <div class="ticker-track" id="ticker"></div>
+    <div class="tf-r"></div>
+  </div>
+  <div class="bar-r">
+    <div class="pi" onclick="filterByDomain('conflict')" title="Click to filter conflict">
+      <div class="pir c-hot" id="pi-c"><span>87</span></div><div class="pil">CONFLICT</div></div>
+    <div class="pi" onclick="filterByDomain('economic')" title="Click to filter economic">
+      <div class="pir c-warm" id="pi-e"><span>62</span></div><div class="pil">ECON</div></div>
+    <div class="pi" onclick="filterByDomain('climate')" title="Click to filter climate">
+      <div class="pir c-cool" id="pi-k"><span>44</span></div><div class="pil">CLIMATE</div></div>
+    <div class="pi" onclick="filterByDomain('energy')" title="Click to filter energy">
+      <div class="pir c-gold" id="pi-n"><span>71</span></div><div class="pil">ENERGY</div></div>
+    <div class="pi" onclick="filterByDomain('political')" title="Click to filter political">
+      <div class="pir c-violet" id="pi-p"><span>55</span></div><div class="pil">POLITICAL</div></div>
+  </div>
+</div>
+
+</div><!-- #root -->
+
+<!-- Context menu -->
+<div id="ctxmenu">
+  <div class="ctx-header" id="ctx-region">—</div>
+  <div class="ctx-sub" id="ctx-regime">—</div>
+  <button class="ctx-item" onclick="ctxDeepDive()"><span class="ci-icon">⬡</span>Deep Dive Analysis</button>
+  <button class="ctx-item" onclick="ctxAddToCompare()"><span class="ci-icon">⊞</span>Add to Differential Compare</button>
+  <button class="ctx-item" onclick="ctxShowCascade()"><span class="ci-icon">⟳</span>Show Cascade Links</button>
+  <div class="ctx-sep"></div>
+  <button class="ctx-item" onclick="ctxZoomTo()"><span class="ci-icon">◎</span>Zoom to Region</button>
+  <button class="ctx-item" onclick="ctxExport()"><span class="ci-icon">↓</span>Export Brief (JSON)</button>
+  <div class="ctx-sep"></div>
+  <button class="ctx-item" onclick="closeCtx()" style="color:var(--txt3)"><span class="ci-icon">✕</span>Close</button>
+</div>
+
+<!-- Differential strip -->
+<div id="diff-strip">
+  <div class="ds-label">
+    <div class="ds-title">PROBE Δ</div>
+    <div class="ds-ab" id="ds-ab">A vs B</div>
+  </div>
+  <div class="ds-deltas" id="ds-deltas"></div>
+  <div class="ds-close"><button class="ds-x" onclick="closeDiff()">✕ CLEAR</button></div>
+</div>
+
+<!-- Tooltip -->
+<div id="tt"><div class="tti">
+  <div class="ttr" id="tt-r">—</div>
+  <div id="tt-rows"></div>
+</div></div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════
+// DATA MODEL
+// ════════════════════════════════════════════════════
+const REGIONS=[
+  {id:'iran',     name:'Iran',                lat:33,   lon:53,   regime:'EMERGENT', score:1.00, delta:'+100', domains:['conflict','energy','political'],  pressure:.88, deviation:.95, acceleration:.12, reinforcement:.92, confidence:.78, velocity:.08},
+  {id:'dc',       name:'38.0°, -78.0°',       lat:38,   lon:-78,  regime:'EMERGENT', score:1.00, delta:'+100', domains:['conflict','economic'],            pressure:.80, deviation:.80, acceleration:.09, reinforcement:.75, confidence:.65, velocity:.07},
+  {id:'gaza',     name:'Gaza',                lat:31.5, lon:34.5, regime:'EMERGENT', score:1.00, delta:'+92',  domains:['conflict','social','political'],   pressure:.95, deviation:.98, acceleration:.15, reinforcement:.88, confidence:.91, velocity:.11},
+  {id:'ukraine',  name:'Ukraine',             lat:49,   lon:32,   regime:'EMERGENT', score:.78,  delta:'+78',  domains:['conflict','energy','supply'],       pressure:.82, deviation:.78, acceleration:.06, reinforcement:.85, confidence:.88, velocity:.05},
+  {id:'sudan',    name:'Sudan',               lat:15,   lon:30,   regime:'SHIFTING', score:.61,  delta:'+61',  domains:['conflict','climate','food'],        pressure:.65, deviation:.58, acceleration:.04, reinforcement:.62, confidence:.70, velocity:.03},
+  {id:'gaza2',    name:'Gaza (S)',             lat:31.4, lon:34.4, regime:'SHIFTING', score:.60,  delta:'-60',  domains:['conflict','social'],               pressure:.58, deviation:.60, acceleration:-.02,reinforcement:.55, confidence:.82, velocity:-.02},
+  {id:'iraq',     name:'Iraq',                lat:33,   lon:44,   regime:'SHIFTING', score:.59,  delta:'+59',  domains:['conflict','energy'],               pressure:.60, deviation:.55, acceleration:.07, reinforcement:.58, confidence:.68, velocity:.04},
+  {id:'korea',    name:'38.0°, 126.0°',       lat:38,   lon:126,  regime:'COUPLED',  score:.52,  delta:'+48',  domains:['military','political'],            pressure:.50, deviation:.45, acceleration:.02, reinforcement:.48, confidence:.55, velocity:.02},
+  {id:'yemen',    name:'16.0°, 44.0°',        lat:16,   lon:44,   regime:'COUPLED',  score:.58,  delta:'+45',  domains:['conflict','food'],                 pressure:.55, deviation:.50, acceleration:.03, reinforcement:.52, confidence:.60, velocity:.02},
+  {id:'ksa',      name:'24.0°, 46.0°',        lat:24,   lon:46,   regime:'COUPLED',  score:.46,  delta:'+46',  domains:['energy','supply'],                 pressure:.45, deviation:.42, acceleration:.01, reinforcement:.44, confidence:.50, velocity:.01},
+  {id:'nang',     name:'Nangarhar — Afghanistan',lat:34,lon:70,   regime:'COUPLED',  score:.45,  delta:'+45',  domains:['conflict','political'],            pressure:.63, deviation:.40, acceleration:-.01,reinforcement:.00, confidence:.95, velocity:.00},
+  {id:'caracas',  name:'Caracas — Venezuela', lat:10,   lon:-67,  regime:'COUPLED',  score:.42,  delta:'+42',  domains:['economic','social','political'],   pressure:.42, deviation:.38, acceleration:.02, reinforcement:.40, confidence:.58, velocity:.02},
+  {id:'myanmar',  name:'Myanmar',             lat:20,   lon:96,   regime:'STRESSED', score:.38,  delta:'+31',  domains:['conflict','political'],            pressure:.40, deviation:.35, acceleration:.01, reinforcement:.38, confidence:.62, velocity:.01},
+  {id:'ethiopia', name:'Ethiopia',            lat:9,    lon:40,   regime:'STRESSED', score:.34,  delta:'+28',  domains:['conflict','food','climate'],        pressure:.38, deviation:.30, acceleration:.02, reinforcement:.35, confidence:.55, velocity:.01},
+  {id:'taiwan',   name:'Taiwan Strait',       lat:25,   lon:121,  regime:'STRESSED', score:.32,  delta:'+22',  domains:['military','supply'],               pressure:.35, deviation:.28, acceleration:.01, reinforcement:.30, confidence:.65, velocity:.01},
+  {id:'drc',      name:'DRC',                 lat:0,    lon:24,   regime:'STRESSED', score:.28,  delta:'+18',  domains:['conflict','supply'],               pressure:.30, deviation:.25, acceleration:.00, reinforcement:.28, confidence:.52, velocity:.00},
+  {id:'sahel',    name:'Sahel',               lat:13,   lon:2,    regime:'STABLE',   score:.22,  delta:'+12',  domains:['climate','food','social'],          pressure:.25, deviation:.20, acceleration:-.01,reinforcement:.22, confidence:.48, velocity:-.01},
+  {id:'khartoum', name:'Khartoum — Sudan',    lat:15.5, lon:32.5, regime:'STABLE',   score:.00,  delta:'0',    domains:['conflict'],                        pressure:.18, deviation:.15, acceleration:.00, reinforcement:.12, confidence:.45, velocity:.00},
+  {id:'niamey',   name:'Niamey — Niger',      lat:13.5, lon:2.1,  regime:'STABLE',   score:.00,  delta:'0',    domains:['food','climate'],                  pressure:.15, deviation:.12, acceleration:.00, reinforcement:.10, confidence:.40, velocity:.00},
+  {id:'juba',     name:'Juba — South Sudan',  lat:4.8,  lon:31.6, regime:'STABLE',   score:.00,  delta:'0',    domains:['conflict','food'],                 pressure:.20, deviation:.18, acceleration:.00, reinforcement:.15, confidence:.42, velocity:.00},
+  {id:'bab',      name:'Bab-el-Mandeb',       lat:12.6, lon:43.4, regime:'STABLE',   score:.00,  delta:'0',    domains:['supply','energy'],                 pressure:.22, deviation:.16, acceleration:.00, reinforcement:.14, confidence:.50, velocity:.00},
+  {id:'yangon',   name:'Yangon — Myanmar',    lat:16.8, lon:96.2, regime:'STABLE',   score:.00,  delta:'0',    domains:['political','social'],              pressure:.18, deviation:.14, acceleration:.00, reinforcement:.12, confidence:.44, velocity:.00},
+];
+
+const SOURCES=[
+  {dom:'conflict',cls:'evd-c',txt:'Al-Jazeera · Gaza ceasefire talks stall amid renewed bombardment of northern sector',score:'0.94',region:'Gaza',age:'3m'},
+  {dom:'energy',  cls:'evd-n',txt:'Reuters · Iran signals OPEC+ output cut following fresh US sanctions escalation',score:'0.88',region:'Iran',age:'7m'},
+  {dom:'conflict',cls:'evd-c',txt:'BBC · Ukraine front-line advances near Zaporizhzhia corridor — 4km movement logged',score:'0.91',region:'Ukraine',age:'11m'},
+  {dom:'political',cls:'evd-p',txt:'AP · Sudan RSF commander refuses ICC cooperation amid Khartoum siege operations',score:'0.82',region:'Sudan',age:'14m'},
+  {dom:'economic',cls:'evd-e',txt:'FT · Venezuela hyperinflation accelerates — USD black-market premium reaches +340%',score:'0.76',region:'Caracas',age:'19m'},
+  {dom:'climate', cls:'evd-k',txt:'GDELT · Sahel precipitation deficit 34% below seasonal 7-day rolling baseline',score:'0.71',region:'Sahel',age:'22m'},
+  {dom:'conflict',cls:'evd-c',txt:'ACLED · Tigray armed group incursion at Addis Ababa periphery confirmed by 3 sources',score:'0.80',region:'Ethiopia',age:'28m'},
+  {dom:'energy',  cls:'evd-n',txt:'Bloomberg · Persian Gulf tanker traffic down 18% — Hormuz monitoring elevated',score:'0.85',region:'Iran',age:'33m'},
+  {dom:'political',cls:'evd-p',txt:'Reuters · DPRK artillery exercises detected along 38th parallel — SIGINT confirmed',score:'0.78',region:'38.0°, 126.0°',age:'37m'},
+  {dom:'conflict',cls:'evd-c',txt:'GDELT · Myanmar ARSA cross-border movement near Nangarhar documented — 2nd incident',score:'0.69',region:'Myanmar',age:'41m'},
+  {dom:'economic',cls:'evd-e',txt:'IMF · Iraq FX reserves drawdown accelerating amid sustained oil price volatility',score:'0.73',region:'Iraq',age:'45m'},
+  {dom:'conflict',cls:'evd-c',txt:'OpenAQ · DRC mining region PM2.5 anomaly — 3.8σ above 7-day structural baseline',score:'0.66',region:'DRC',age:'52m'},
+  {dom:'political',cls:'evd-p',txt:'OSINTdefence · Taiwan Strait CSG repositioning logged at 0430 UTC — 3rd in 7 days',score:'0.88',region:'Taiwan Strait',age:'58m'},
+  {dom:'economic',cls:'evd-e',txt:'GDELT · Venezuela sovereign bond spread at 22-year high — systemic default risk elevated',score:'0.79',region:'Caracas',age:'1h 2m'},
+  {dom:'conflict',cls:'evd-c',txt:'ACLED · Sudan RSF documented across 4 additional Blue Nile corridor locations',score:'0.84',region:'Sudan',age:'1h 8m'},
+  {dom:'energy',  cls:'evd-n',txt:'EIA · South Pars / North Dome production telemetry anomaly — monitoring active',score:'0.77',region:'Iran',age:'1h 15m'},
+];
+
+const COUPLING_PAIRS=[['iran','ukraine'],['iran','iraq'],['ukraine','nang'],['gaza','ukraine'],['iran','ksa'],['iraq','iran']];
+
+const TIMELINE_EVENTS=[
+  {time:'19:47',region:'Gaza',regime:'EMERGENT',color:'#ff2d55',event:'Regime transition SHIFTING → EMERGENT detected',detail:'Acceleration +0.15 · 3 domains coupled · CUSUM alarm persisted 4 buckets'},
+  {time:'19:31',region:'Iran',regime:'EMERGENT',color:'#ff2d55',event:'Energy domain coupling event — South Pars telemetry anomaly',detail:'Cross-domain reinforcement: conflict × energy × political · SVS 1.00'},
+  {time:'19:15',region:'Ukraine',regime:'EMERGENT',color:'#ff2d55',event:'Propagation vector detected toward Nangarhar',detail:'Domain similarity 0.68 · Gradient direction: SE · Spread risk HIGH'},
+  {time:'18:52',region:'Sudan',regime:'SHIFTING',color:'#ff8c00',event:'RSF corridor expansion — Blue Nile sector +4 locations',detail:'ACLED source confidence 0.84 · Baseline deviation +58%'},
+  {time:'18:30',region:'Iraq',regime:'SHIFTING',color:'#ff8c00',event:'FX reserves drawdown crosses 2σ threshold',detail:'Economic domain acceleration +0.07 · IMF alert triggered'},
+  {time:'17:55',region:'Taiwan Strait',regime:'STRESSED',color:'#00c8ff',event:'CSG repositioning logged — 3rd occurrence in 7 days',detail:'Military domain persistence count: 8 polls · Spread risk MEDIUM'},
+  {time:'17:22',region:'Caracas',regime:'COUPLED',color:'#a855f7',event:'Bond spread reaches 22-year high — systemic coupling',detail:'Economic × social × political domains active · Reinforcement 40%'},
+  {time:'16:44',region:'DRC',regime:'STRESSED',color:'#00c8ff',event:'PM2.5 anomaly — 3.8σ above baseline in mining corridor',detail:'OpenAQ source · Climate-conflict coupling potential flagged'},
+  {time:'16:10',region:'Sahel',regime:'STABLE',color:'#00ff9d',event:'Precipitation deficit 34% — seasonal anomaly widening',detail:'GDELT climate signal · Food security index declining'},
+  {time:'15:38',region:'Myanmar',regime:'STRESSED',color:'#00c8ff',event:'ARSA cross-border movement — 2nd incident in 48h',detail:'Nangarhar proximity coupling flagged · Domain overlap 2/4'},
+];
+
+let selId='nang', inspTab='state', mapMode='GRID', opMode='PREDICT', horizon='3M';
+let compareA=null, compareB=null;
+let ctxRegion=null;
+let domainFilter=null;
+const activeLayers=new Set(['energy','conflict']);
+
+// ════════════════════════════════════════════════════
+// GLOBE ENGINE
+// ════════════════════════════════════════════════════
+const canvas=document.getElementById('gc');
+const ctx=canvas.getContext('2d');
+let W,H,CX,CY,R,t=0;
+let globeLon=45,globeDrag=false,dragX=0,dragLon=0;
+let zoomLevel=1;
+
+function resize(){
+  W=canvas.offsetWidth;H=canvas.offsetHeight;
+  canvas.width=W;canvas.height=H;
+  CX=W/2;CY=H/2;R=Math.min(W,H)*.40*zoomLevel;
+}
+window.addEventListener('resize',()=>resize());
+resize();
+
+function project(lat,lon){
+  const phi=lat*Math.PI/180;
+  const lam=(lon-globeLon)*Math.PI/180;
+  const x=R*Math.cos(phi)*Math.sin(lam);
+  const y=-R*Math.sin(phi);
+  const z=Math.cos(phi)*Math.cos(lam);
+  return{x:CX+x,y:CY+y,vis:z>-0.1,z};
+}
+
+// Mouse / touch events
+canvas.addEventListener('mousedown',e=>{globeDrag=true;dragX=e.clientX;dragLon=globeLon;});
+window.addEventListener('mousemove',e=>{
+  if(globeDrag){globeLon=dragLon-(e.clientX-dragX)*0.28;}
+  if(!globeDrag) handleHover(e);
+});
+window.addEventListener('mouseup',()=>{globeDrag=false;});
+canvas.addEventListener('wheel',e=>{
+  e.preventDefault();
+  zoomLevel=Math.max(0.5,Math.min(3,zoomLevel-(e.deltaY>0?0.12:-0.12)));
+  R=Math.min(W,H)*.40*zoomLevel;
+},{passive:false});
+canvas.addEventListener('click',e=>{if(!globeDrag)handleClick(e);closeCtx();});
+canvas.addEventListener('contextmenu',e=>{e.preventDefault();handleRightClick(e);});
+
+function zoomIn(){zoomLevel=Math.min(3,zoomLevel+0.2);R=Math.min(W,H)*.40*zoomLevel;}
+function zoomOut(){zoomLevel=Math.max(0.5,zoomLevel-0.2);R=Math.min(W,H)*.40*zoomLevel;}
+function resetView(){zoomLevel=1;globeLon=45;R=Math.min(W,H)*.40;}
+
+function getHitRegion(mx,my){
+  for(const r of REGIONS){
+    const p=project(r.lat,r.lon);
+    if(!p.vis)continue;
+    const hr=12+r.score*14;
+    if((mx-p.x)**2+(my-p.y)**2<hr*hr)return r;
+  }
+  return null;
+}
+
+function handleHover(e){
+  const rect=canvas.getBoundingClientRect();
+  const r=getHitRegion(e.clientX-rect.left,e.clientY-rect.top);
+  r?showTooltip(e.clientX,e.clientY,r):hideTooltip();
+}
+function handleClick(e){
+  const rect=canvas.getBoundingClientRect();
+  const r=getHitRegion(e.clientX-rect.left,e.clientY-rect.top);
+  if(r)selectRegion(r.id);
+}
+function handleRightClick(e){
+  const rect=canvas.getBoundingClientRect();
+  const r=getHitRegion(e.clientX-rect.left,e.clientY-rect.top);
+  if(r){
+    ctxRegion=r;
+    showCtxMenu(e.clientX,e.clientY,r);
+  }
+}
+
+// ── Context menu actions ──
+function showCtxMenu(x,y,r){
+  const m=document.getElementById('ctxmenu');
+  document.getElementById('ctx-region').textContent=r.name;
+  document.getElementById('ctx-regime').textContent=r.regime+' · '+r.domains.join(' · ').toUpperCase();
+  m.style.left=x+'px';m.style.top=y+'px';m.classList.add('vis');
+}
+function closeCtx(){document.getElementById('ctxmenu').classList.remove('vis');}
+window.addEventListener('click',e=>{if(!e.target.closest('#ctxmenu'))closeCtx();});
+function ctxDeepDive(){if(ctxRegion){selectRegion(ctxRegion.id);openDeepDive();}closeCtx();}
+function ctxAddToCompare(){
+  if(!ctxRegion)return;closeCtx();
+  if(!compareA){compareA=ctxRegion;showToast('PROBE A SET: '+ctxRegion.name);}
+  else if(!compareB&&ctxRegion.id!==compareA.id){compareB=ctxRegion;renderDiff();}
+  else{compareA=ctxRegion;compareB=null;closeDiff();showToast('PROBE A RESET: '+ctxRegion.name);}
+}
+function ctxShowCascade(){if(ctxRegion){selectRegion(ctxRegion.id);setTab(document.querySelector('.itab[onclick*="drivers"]'),'drivers');}closeCtx();}
+function ctxZoomTo(){
+  if(!ctxRegion)return;closeCtx();
+  globeLon=ctxRegion.lon-10;
+  zoomLevel=Math.min(2.2,zoomLevel+0.5);
+  R=Math.min(W,H)*.40*zoomLevel;
+  showToast('ZOOMED: '+ctxRegion.name);
+}
+function ctxExport(){if(ctxRegion){selectRegion(ctxRegion.id);exportJSON();}closeCtx();}
+
+// ── Tooltip ──
+function showTooltip(cx,cy,r){
+  const tt=document.getElementById('tt');
+  document.getElementById('tt-r').textContent=r.name;
+  document.getElementById('tt-rows').innerHTML=`
+    <div class="ttrow"><span class="ttk">REGIME</span><span class="ttv" style="color:${regimeColor(r.regime)}">${r.regime}</span></div>
+    <div class="ttrow"><span class="ttk">PRESSURE</span><span class="ttv">${(r.pressure*100).toFixed(0)}%</span></div>
+    <div class="ttrow"><span class="ttk">DEVIATION</span><span class="ttv">Δ${(r.deviation*100).toFixed(0)}</span></div>
+    <div class="ttrow"><span class="ttk">DOMAINS</span><span class="ttv">${r.domains.slice(0,3).join(', ')}</span></div>
+    <div class="ttrow"><span class="ttk">CONFIDENCE</span><span class="ttv">${(r.confidence*100).toFixed(0)}%</span></div>
+    <div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-top:5px;letter-spacing:.1em">RIGHT-CLICK FOR MORE OPTIONS</div>`;
+  tt.style.left=(cx+14)+'px';tt.style.top=(cy-44)+'px';
+  tt.classList.add('vis');
+}
+function hideTooltip(){document.getElementById('tt').classList.remove('vis');}
+
+// ── Colors ──
+function regimeColor(r){return{EMERGENT:'#ff2d55',SHIFTING:'#ff8c00',COUPLED:'#a855f7',STRESSED:'#00c8ff',STABLE:'#00ff9d'}[r]||'#888';}
+function regimeRGB(r){return{EMERGENT:[255,45,85],SHIFTING:[255,140,0],COUPLED:[168,85,247],STRESSED:[0,200,255],STABLE:[0,255,157]}[r]||[100,100,100];}
+function regimeBadge(r){return{EMERGENT:'rb-E',SHIFTING:'rb-S',COUPLED:'rb-C',STRESSED:'rb-T',STABLE:'rb-N'}[r]||'rb-N';}
+function regimeHudClass(r){return{EMERGENT:'rh-E',SHIFTING:'rh-S',COUPLED:'rh-C',STRESSED:'rh-T',STABLE:'rh-N'}[r]||'rh-N';}
+
+// ── Coastlines ──
+const COASTS=[
+  [[36,-10],[40,-8],[44,-8],[43,-2],[44,2],[48,2],[50,-2],[52,-4],[54,-3],[54,8],[56,8],[58,5],[60,5],[62,4],[65,14],[68,20],[70,26],[69,30],[65,26],[62,24],[58,22],[55,18],[52,14],[50,10],[48,8],[46,8],[44,4],[42,2],[40,0],[38,-4],[36,-8],[36,-10]],
+  [[36,10],[34,2],[32,-2],[22,-18],[10,-18],[0,-14],[-10,-15],[-18,-12],[-22,-4],[-18,10],[-10,14],[-4,16],[4,18],[12,16],[22,12],[32,14],[38,10]],
+  [[36,36],[34,40],[30,48],[26,50],[24,58],[22,60],[24,62],[26,56],[28,50],[30,44],[34,40],[38,36]],
+  [[8,100],[14,108],[20,110],[24,116],[30,122],[36,122],[38,124],[34,128],[28,122],[24,114],[16,108],[10,100],[4,98],[0,102],[-4,106],[-6,112],[0,110],[6,108],[8,100]],
+  [[22,98],[18,96],[16,98],[14,100],[10,104],[6,100],[4,103],[8,108],[14,108],[18,106],[22,100],[22,98]],
+  [[-14,128],[-12,134],[-14,140],[-18,148],[-26,154],[-32,152],[-38,146],[-38,140],[-36,136],[-34,122],[-28,114],[-24,114],[-20,116],[-14,128]],
+  [[50,-60],[44,-64],[42,-72],[38,-76],[36,-76],[30,-80],[26,-80],[24,-82],[28,-90],[30,-88],[28,-92],[24,-90],[20,-88],[18,-92],[10,-86],[8,-78],[6,-74],[2,-52],[0,-50],[4,-52],[8,-60],[10,-68],[14,-70],[18,-66],[22,-50],[28,-48],[34,-52],[40,-68],[44,-66],[50,-60]]
+];
+
+function drawCoasts(){
+  ctx.save();ctx.strokeStyle='rgba(50,90,200,0.14)';ctx.lineWidth=0.5;
+  for(const line of COASTS){
+    ctx.beginPath();let f=true;
+    for(const[la,lo]of line){const p=project(la,lo);if(!p.vis){f=true;continue;}f?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);f=false;}
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawGraticule(){
+  ctx.save();ctx.strokeStyle='rgba(30,60,150,0.07)';ctx.lineWidth=0.4;
+  for(let la=-60;la<=60;la+=30){ctx.beginPath();let f=true;for(let lo=-180;lo<=180;lo+=4){const p=project(la,lo);if(!p.vis){f=true;continue;}f?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);f=false;}ctx.stroke();}
+  for(let lo=-180;lo<=180;lo+=30){ctx.beginPath();let f=true;for(let la=-80;la<=80;la+=4){const p=project(la,lo);if(!p.vis){f=true;continue;}f?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);f=false;}ctx.stroke();}
+  ctx.restore();
+}
+
+// ── Mode-specific rendering ──
+function drawTensionField(){
+  ctx.save();
+  for(const r of REGIONS){
+    if(r.score<.2)continue;
+    const p=project(r.lat,r.lon);if(!p.vis)continue;
+    const[ri,gi,bi]=regimeRGB(r.regime);
+    const num=Math.floor(r.score*8);
+    for(let i=0;i<num;i++){
+      const ang=(i/num)*Math.PI*2;
+      const len=40+r.score*60;
+      const x2=p.x+Math.cos(ang)*len,y2=p.y+Math.sin(ang)*len;
+      const grd=ctx.createLinearGradient(p.x,p.y,x2,y2);
+      grd.addColorStop(0,`rgba(${ri},${gi},${bi},${r.score*.3})`);
+      grd.addColorStop(1,`rgba(${ri},${gi},${bi},0)`);
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(x2,y2);
+      ctx.strokeStyle=grd;ctx.lineWidth=0.8;ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+
+function drawRuptureZones(){
+  ctx.save();
+  for(const r of REGIONS){
+    if(r.regime!=='EMERGENT'&&r.regime!=='SHIFTING')continue;
+    const p=project(r.lat,r.lon);if(!p.vis)continue;
+    const[ri,gi,bi]=regimeRGB(r.regime);
+    ctx.save();
+    ctx.strokeStyle=`rgba(${ri},${gi},${bi},0.3)`;ctx.lineWidth=1;
+    ctx.setLineDash([2,4]);
+    for(let ang=0;ang<Math.PI*2;ang+=Math.PI/3){
+      const rx=p.x+Math.cos(ang)*(30+r.score*40);
+      const ry=p.y+Math.sin(ang)*(30+r.score*40);
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(rx,ry);ctx.stroke();
+    }
+    ctx.setLineDash([]);ctx.restore();
+  }
+  ctx.restore();
+}
+
+function drawFlowField(){
+  const hot=REGIONS.filter(r=>r.score>.3);
+  ctx.save();
+  for(const src of hot){
+    const ps=project(src.lat,src.lon);if(!ps.vis)continue;
+    const[ri,gi,bi]=regimeRGB(src.regime);
+    for(const dst of hot){
+      if(dst.id===src.id)continue;
+      const pd=project(dst.lat,dst.lon);if(!pd.vis)continue;
+      const prog=((t*0.0006+src.lat*.1+dst.lon*.05)%1);
+      const px2=ps.x+(pd.x-ps.x)*prog,py2=ps.y+(pd.y-ps.y)*prog;
+      ctx.beginPath();ctx.arc(px2,py2,1.8,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${ri},${gi},${bi},${0.4*(1-prog)})`;ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+// ── Onion rings ──
+function drawOnionRings(p,r,t){
+  const[ri,gi,bi]=regimeRGB(r.regime);
+  const nRings=r.regime==='EMERGENT'?5:r.regime==='SHIFTING'?4:r.regime==='COUPLED'?3:2;
+  const baseR=8+r.score*10;
+  for(let i=nRings;i>=1;i--){
+    const ringR=baseR+i*(11+r.score*7);
+    const breathe=1+0.07*Math.sin(t*0.0018+i*1.3);
+    const opac=(1/(i+.5))*.65*(0.55+0.45*Math.sin(t*0.0012+i*1.1));
+    if(r.regime==='EMERGENT'&&i===nRings)ctx.setLineDash([3,7]);
+    ctx.beginPath();ctx.arc(p.x,p.y,ringR*breathe,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(${ri},${gi},${bi},${opac})`;ctx.lineWidth=i===1?1.6:1.1/i;ctx.stroke();
+    if(r.regime==='EMERGENT'&&i===nRings)ctx.setLineDash([]);
+    if(i===1){
+      for(let k=0;k<6;k++){
+        const ang=(k/6)*Math.PI*2+t*.0004;
+        ctx.beginPath();
+        ctx.moveTo(p.x+Math.cos(ang)*(ringR*breathe-3),p.y+Math.sin(ang)*(ringR*breathe-3));
+        ctx.lineTo(p.x+Math.cos(ang)*(ringR*breathe+3),p.y+Math.sin(ang)*(ringR*breathe+3));
+        ctx.strokeStyle=`rgba(${ri},${gi},${bi},${opac*1.8})`;ctx.lineWidth=.8;ctx.stroke();
+      }
+    }
+  }
+}
+
+function drawCore(p,r,t){
+  const[ri,gi,bi]=regimeRGB(r.regime);
+  const pulse=1+0.14*Math.sin(t*.003);
+  const cR=5+r.score*7;
+  const grd=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,cR*pulse*2.5);
+  grd.addColorStop(0,`rgba(${ri},${gi},${bi},0.55)`);
+  grd.addColorStop(1,`rgba(${ri},${gi},${bi},0)`);
+  ctx.beginPath();ctx.arc(p.x,p.y,cR*pulse*2.5,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();
+  ctx.beginPath();ctx.arc(p.x,p.y,cR*pulse,0,Math.PI*2);
+  ctx.fillStyle=`rgba(${ri},${gi},${bi},0.9)`;ctx.fill();
+  if(p.z>.12){
+    const dim=domainFilter&&!r.domains.includes(domainFilter);
+    if(!dim){
+      ctx.font='8px Rajdhani';ctx.fillStyle=`rgba(${ri},${gi},${bi},0.82)`;
+      ctx.fillText(r.name.split('—')[0].trim(),p.x+cR*pulse+4,p.y+3);
+    }
+  }
+}
+
+function drawCoupling(t){
+  for(const[a,b]of COUPLING_PAIRS){
+    const ra=REGIONS.find(r=>r.id===a),rb=REGIONS.find(r=>r.id===b);if(!ra||!rb)continue;
+    const pa=project(ra.lat,ra.lon),pb=project(rb.lat,rb.lon);if(!pa.vis||!pb.vis)continue;
+    ctx.save();
+    ctx.strokeStyle='rgba(168,85,247,0.14)';ctx.lineWidth=0.5;
+    ctx.setLineDash([4,10]);ctx.lineDashOffset=-(t*.0004%1)*14;
+    ctx.beginPath();ctx.moveTo(pa.x,pa.y);ctx.lineTo(pb.x,pb.y);ctx.stroke();
+    ctx.setLineDash([]);ctx.restore();
+  }
+}
+
+function drawPropagation(t){
+  const hot=REGIONS.filter(r=>r.regime==='EMERGENT'||r.regime==='SHIFTING');
+  for(const src of hot){
+    const ps=project(src.lat,src.lon);if(!ps.vis)continue;
+    const[ri,gi,bi]=regimeRGB(src.regime);
+    for(const[dlat,dlon]of[[2,0],[-2,0],[0,3],[0,-3],[2,2],[-2,2]]){
+      const pt=project(src.lat+dlat*4,src.lon+dlon*4);if(!pt.vis)continue;
+      const prog=((t*.0007+dlat*.3+dlon*.2)%1);
+      const px2=ps.x+(pt.x-ps.x)*prog,py2=ps.y+(pt.y-ps.y)*prog;
+      ctx.beginPath();ctx.arc(px2,py2,1.5,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${ri},${gi},${bi},${0.5*(1-prog)})`;ctx.fill();
+    }
+  }
+}
+
+function drawCluster(t){
+  const visible=REGIONS.filter(r=>r.score>.25);
+  ctx.save();
+  for(const r of visible){
+    const p=project(r.lat,r.lon);if(!p.vis)continue;
+    const[ri,gi,bi]=regimeRGB(r.regime);
+    const sz=28+r.score*50;const breathe=1+.08*Math.sin(t*.0015);
+    ctx.beginPath();ctx.arc(p.x,p.y,sz*breathe,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${ri},${gi},${bi},${r.score*.07})`;ctx.fill();
+    ctx.strokeStyle=`rgba(${ri},${gi},${bi},0.12)`;ctx.lineWidth=1;ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawGlobe(ts){
+  t=ts;
+  ctx.clearRect(0,0,W,H);
+  // Background
+  const bg=ctx.createRadialGradient(CX,CY,0,CX,CY,R*1.8);
+  bg.addColorStop(0,'rgba(2,4,20,1)');bg.addColorStop(.7,'rgba(1,2,12,1)');bg.addColorStop(1,'rgba(0,0,8,1)');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  // Stars
+  ctx.save();
+  for(let i=0;i<130;i++){
+    const sx=((i*137.5+ts*.008)%1)*W;
+    const sy=((i*73.3)%1)*H;
+    const br=.3+.4*Math.sin(i+ts*.001);
+    ctx.beginPath();ctx.arc(sx,sy,.6,0,Math.PI*2);ctx.fillStyle=`rgba(150,180,255,${br*.28})`;ctx.fill();
+  }
+  ctx.restore();
+  // Sphere
+  const sph=ctx.createRadialGradient(CX-R*.28,CY-R*.18,R*.08,CX,CY,R);
+  sph.addColorStop(0,'rgba(8,18,55,0.88)');sph.addColorStop(.55,'rgba(4,9,32,0.94)');sph.addColorStop(1,'rgba(1,2,12,1)');
+  ctx.save();ctx.beginPath();ctx.arc(CX,CY,R,0,Math.PI*2);ctx.fillStyle=sph;ctx.fill();
+  // Atmosphere
+  const atm=ctx.createRadialGradient(CX,CY,R*.88,CX,CY,R*1.16);
+  atm.addColorStop(0,'rgba(0,80,200,0.22)');atm.addColorStop(.5,'rgba(0,50,150,0.09)');atm.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath();ctx.arc(CX,CY,R*1.16,0,Math.PI*2);ctx.fillStyle=atm;ctx.fill();
+  ctx.restore();
+  // Clip
+  ctx.save();ctx.beginPath();ctx.arc(CX,CY,R-.5,0,Math.PI*2);ctx.clip();
+  drawGraticule();drawCoasts();
+  // Mode-specific
+  if(mapMode==='TENSION')drawTensionField();
+  if(mapMode==='RUPTURE')drawRuptureZones();
+  if(mapMode==='FLOW')drawFlowField();
+  if(mapMode==='CLUST')drawCluster(ts);
+  // Regime glow
+  for(const r of REGIONS){
+    if(domainFilter&&!r.domains.includes(domainFilter))continue;
+    const p=project(r.lat,r.lon);if(!p.vis)continue;
+    const[ri,gi,bi]=regimeRGB(r.regime);
+    const gR=28+r.score*45;
+    const grd=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,gR);
+    grd.addColorStop(0,`rgba(${ri},${gi},${bi},${r.score*.12})`);grd.addColorStop(1,`rgba(${ri},${gi},${bi},0)`);
+    ctx.beginPath();ctx.arc(p.x,p.y,gR,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();
+  }
+  if(mapMode==='CONN'||mapMode==='GRID')drawCoupling(ts);
+  // Regions back-to-front
+  const vis=REGIONS.map(r=>{const p=project(r.lat,r.lon);return{r,p};}).filter(x=>x.p.vis).sort((a,b)=>a.p.z-b.p.z);
+  for(const{r,p}of vis){
+    if(domainFilter&&!r.domains.includes(domainFilter))continue;
+    if(r.regime!=='STABLE')drawOnionRings(p,r,ts);
+  }
+  for(const{r,p}of vis){
+    const dim=domainFilter&&!r.domains.includes(domainFilter);
+    if(dim){ctx.globalAlpha=.22;}
+    drawCore(p,r,ts);
+    ctx.globalAlpha=1;
+    if(r.id===selId){
+      ctx.beginPath();ctx.arc(p.x,p.y,10+r.score*12,0,Math.PI*2);
+      ctx.strokeStyle='rgba(0,200,255,0.72)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+    }
+    // Compare markers
+    if(compareA&&r.id===compareA.id){
+      ctx.save();ctx.font='bold 9px Rajdhani';ctx.fillStyle='#ff2d55';ctx.fillText('A',p.x-4,p.y-12+r.score*7);ctx.restore();
+    }
+    if(compareB&&r.id===compareB.id){
+      ctx.save();ctx.font='bold 9px Rajdhani';ctx.fillStyle='#00c8ff';ctx.fillText('B',p.x-4,p.y-12+r.score*7);ctx.restore();
+    }
+  }
+  drawPropagation(ts);
+  ctx.restore();
+  // Rim
+  ctx.save();
+  const rim=ctx.createRadialGradient(CX,CY,R*.93,CX,CY,R*1.06);
+  rim.addColorStop(0,'rgba(0,100,220,0)');rim.addColorStop(.5,'rgba(0,100,220,0.14)');rim.addColorStop(1,'rgba(0,60,160,0)');
+  ctx.beginPath();ctx.arc(CX,CY,R,0,Math.PI*2);ctx.strokeStyle=rim;ctx.lineWidth=10;ctx.stroke();
+  ctx.restore();
+}
+
+function loop(ts){
+  if(!globeDrag)globeLon+=0.011;
+  drawGlobe(ts);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// ════════════════════════════════════════════════════
+// UI
+// ════════════════════════════════════════════════════
+function buildElist(){
+  const f=document.getElementById('srch').value.toLowerCase();
+  const el=document.getElementById('elist');el.innerHTML='';
+  for(const r of REGIONS){
+    if(f&&!r.name.toLowerCase().includes(f))continue;
+    if(domainFilter&&!r.domains.includes(domainFilter))continue;
+    const d=document.createElement('div');
+    d.className='ei'+(r.id===selId?' sel':'');
+    d.onclick=()=>selectRegion(r.id);
+    d.innerHTML=`<div class="ei-r1"><span class="ei-nm">${r.name}</span><span class="ei-sc">Δ${r.delta}</span></div>
+      <div style="display:flex;align-items:center;gap:5px;margin-top:2px">
+        <span class="rbadge ${regimeBadge(r.regime)}">${r.regime}</span>
+        <span style="font-family:var(--mono);font-size:5.5px;color:var(--txt3)">${r.domains.slice(0,2).join('·').toUpperCase()}</span>
+        <span style="font-family:var(--mono);font-size:7px;color:var(--txt3);margin-left:auto">${r.score>0?'△'+Math.round(r.score*100):'—'}</span>
+      </div>
+      <div class="ei-dm">${r.domains.join(' · ').toUpperCase()}</div>`;
+    el.appendChild(d);
+  }
+}
+
+function buildEtags(){
+  const hot=REGIONS.filter(r=>r.regime==='EMERGENT'||r.regime==='SHIFTING');
+  document.getElementById('etags').innerHTML=hot.slice(0,5).map(r=>
+    `<span class="etag ${r.regime==='EMERGENT'?'etag-e':'etag-s'}" onclick="selectRegion('${r.id}')">${r.name.split('—')[0].trim()}</span>`
+  ).join('');
+}
+
+function buildTicker(){
+  const track=document.getElementById('ticker');
+  const items=[...SOURCES,...SOURCES];
+  track.innerHTML=items.map(s=>`
+    <div class="tki" onclick="selectRegionByName('${s.region}')">
+      <span class="tki-src ${s.cls}">${s.dom.toUpperCase()}</span>
+      <span>${s.txt}</span>
+      <span class="tki-sc">${s.score}</span>
+      <span class="tki-rg">${s.region}</span>
+      <span style="color:var(--txt3);font-size:6px">${s.age}</span>
+    </div>`).join('');
+}
+
+function selectRegionByName(name){
+  const r=REGIONS.find(x=>x.name.includes(name)||name.includes(x.name.split('—')[0].trim()));
+  if(r)selectRegion(r.id);
+}
+
+function selectRegion(id){
+  selId=id;
+  const r=REGIONS.find(x=>x.id===id);if(!r)return;
+  globeLon=r.lon-20;
+  document.getElementById('ir').textContent=r.name;
+  document.getElementById('ic').textContent=`${r.lat.toFixed(1)}° · ${r.lon.toFixed(1)}° · ${new Date().toISOString().substring(11,19)} UTC`;
+  const rhud=document.getElementById('rhud');
+  rhud.className='g-hud rhud '+regimeHudClass(r.regime);
+  rhud.textContent='FIELD: '+r.regime;
+  document.getElementById('fnhud').innerHTML=
+    `Pressure ${(r.pressure*100).toFixed(1)} · Deviation Δ${(r.deviation*100).toFixed(1)} · Regime ${r.regime}<br>${r.domains.length>1?'Cross-domain reinforcement active across '+r.domains.length+' vectors':'Single-domain: '+r.domains[0].toUpperCase()}`;
+  document.getElementById('exp-region').textContent=r.name.toUpperCase();
+  buildElist();renderInspector();
+  // Update deep dive if open
+  if(document.getElementById('deepdive').classList.contains('vis'))openDeepDive();
+}
+
+// ── INSPECTOR ──
+function renderInspector(){
+  const r=REGIONS.find(x=>x.id===selId);if(!r)return;
+  const b=document.getElementById('ibody');
+  if(inspTab==='state')b.innerHTML=renderState(r);
+  else if(inspTab==='drivers')b.innerHTML=renderDrivers(r);
+  else if(inspTab==='traj')b.innerHTML=renderTraj(r);
+  else if(inspTab==='evidence')b.innerHTML=renderEvidence(r);
+  else b.innerHTML=renderProv(r);
+}
+
+function B(pct,color){return`<div class="vtr"><div class="vf" style="width:${Math.min(100,pct*100).toFixed(1)}%;background:${color}"></div></div>`;}
+
+function renderState(r){
+  const rc=regimeColor(r.regime);
+  const traj=r.acceleration>.1&&r.velocity>.1?'EXPANDING':r.acceleration>.05?'ACCELERATING':r.velocity<-.05?'CONTRACTING':r.score>.5?'PERSISTENT':'STABLE';
+  const spread=r.velocity*2+r.acceleration*3+r.deviation+r.reinforcement*.5;
+  const sLabel=spread>1.8?'HIGH':spread>.9?'MEDIUM':'LOW';
+  const sColor=sLabel==='HIGH'?'var(--hot)':sLabel==='MEDIUM'?'var(--warm)':'var(--cool)';
+  const tColor=traj==='EXPANDING'||traj==='ACCELERATING'?'var(--hot)':traj==='CONTRACTING'?'var(--cool)':'var(--txt2)';
+  const pE=Math.min(.96,Math.max(.04,.35*r.deviation+.28*Math.min(1,Math.abs(r.acceleration)*6)+.22*r.reinforcement));
+  const pS=Math.min(.96,Math.max(.04,.40*(1-r.deviation)));
+  const pD=Math.max(.04,1-pE-pS);const tot=pE+pS+pD;
+  let wl,wc;
+  if(r.acceleration<.03&&r.reinforcement<.3){wl='MONITORING';wc='var(--txt2)';}
+  else if(r.acceleration<.05&&r.reinforcement<.5){wl='EARLY';wc='var(--cool)';}
+  else if(r.acceleration<.09&&r.reinforcement<.7){wl='CLOSING';wc='var(--warm)';}
+  else{wl='LATE';wc='var(--hot)';}
+  const spill=Math.min(1,r.reinforcement*.55+(r.domains.length/6)*.3);
+  const cont=Math.max(.04,1-spill*.72-Math.abs(r.acceleration)*1.8);
+  return`<div class="vs"><div class="vt">SYSTEM MECHANICS</div>
+    <div class="vbar"><span class="vl">VELOCITY</span>${B(Math.abs(r.velocity),'var(--pulse)')}<span class="vv">${Math.abs(r.velocity)<.01?'CALIBRATING':r.velocity>=0?'+'+r.velocity.toFixed(4):r.velocity.toFixed(4)}</span></div>
+    <div class="vbar"><span class="vl">ACCELERATION</span>${B(Math.abs(r.acceleration),'var(--hot)')}<span class="vv">${Math.abs(r.acceleration)<.005?'CALIBRATING':r.acceleration>=0?'+'+r.acceleration.toFixed(4):r.acceleration.toFixed(4)}</span></div>
+    <div class="vbar"><span class="vl">PERSISTENCE</span>${B(r.reinforcement,'var(--violet)')}<span class="vv">${r.reinforcement>.4?'MULTI-POLL':(r.reinforcement*100).toFixed(0)+'%'}</span></div>
+    <div class="vbar"><span class="vl">CROSS-DOMAIN</span>${B(r.domains.length/6,'var(--warm)')}<span class="vv" style="color:${r.domains.length>1?'var(--hot)':'var(--txt3)'}">${r.domains.length>1?r.domains.length+'00%':'INACTIVE'}</span></div>
+    <div class="vbar"><span class="vl">LOCAL TENSION</span>${B(r.pressure*.51,'var(--pulse)')}<span class="vv">${(r.pressure*51).toFixed(0)}%</span></div>
+  </div>
+  <div class="vs"><div class="vt">TRAJECTORY FORECAST — NEXT STATE</div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <div><div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-bottom:2px">NOW</div><div style="font-family:var(--disp);font-size:12px;font-weight:700;color:${rc}">${r.regime}</div></div>
+      <div style="text-align:center"><div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-bottom:2px">NEXT STATE</div><div style="font-family:var(--disp);font-size:12px;font-weight:700;color:var(--hot)">${pE/tot>.5?'EMERGENT':pS/tot>.5?'STABLE':r.regime}</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-bottom:2px">HORIZON</div><div style="font-family:var(--disp);font-size:12px;font-weight:700;color:var(--txt2)">${Math.abs(r.acceleration)>.08&&r.reinforcement>.5?'hours–days':Math.abs(r.acceleration)>.04||r.reinforcement>.3?'days–weeks':'weeks+'}</div></div>
+    </div>
+    <div class="fc-row"><span class="fcl">ESCALATE</span><div class="fct"><div class="fcf" style="width:${(pE/tot*100).toFixed(0)}%;background:var(--hot)"></div></div><span class="fcp c-hot">${(pE/tot*100).toFixed(0)}%</span></div>
+    <div class="fc-row"><span class="fcl">STABILIZE</span><div class="fct"><div class="fcf" style="width:${(pS/tot*100).toFixed(0)}%;background:var(--cool)"></div></div><span class="fcp c-cool">${(pS/tot*100).toFixed(0)}%</span></div>
+    <div class="fc-row"><span class="fcl">DIFFUSE</span><div class="fct"><div class="fcf" style="width:${(pD/tot*100).toFixed(0)}%;background:var(--txt3)"></div></div><span class="fcp c-txt2">${(pD/tot*100).toFixed(0)}%</span></div>
+  </div>
+  <div class="vs"><div class="vt">DECISION WINDOW</div>
+    <div class="dg">
+      <div class="dc"><div class="dcl">INTERVENTION TIMING</div><div class="dcv" style="color:${wc};font-size:11px">${wl}</div></div>
+      <div class="dc"><div class="dcl">SPILLOVER RISK</div><div class="dcv c-hot">${(spill*100).toFixed(0)}%</div></div>
+      <div class="dc"><div class="dcl">CONTAINMENT PROB</div><div class="dcv c-cool">${(cont*100).toFixed(0)}%</div></div>
+      <div class="dc"><div class="dcl">ACTIVE DOMAINS</div><div class="dcv c-pulse">${r.domains.length} / 6</div></div>
+    </div>
+  </div>
+  <div class="vs"><div class="vt">STRUCTURAL VECTOR</div>
+    <div class="vbar"><span class="vl">PRESSURE</span>${B(r.pressure,'var(--violet)')}<span class="vv">${(r.pressure*100).toFixed(0)}%</span></div>
+    <div class="vbar"><span class="vl">DEVIATION</span>${B(r.deviation,'var(--pulse)')}<span class="vv">Δ${(r.deviation*100).toFixed(0)}</span></div>
+    <div class="vbar"><span class="vl">ACCELERATION</span>${B(Math.abs(r.acceleration),'var(--hot)')}<span class="vv">${r.acceleration>=0?'+':''}${(r.acceleration*100).toFixed(1)}</span></div>
+    <div class="vbar"><span class="vl">REINFORCEMENT</span>${B(r.reinforcement,'var(--warm)')}<span class="vv">${r.reinforcement>.4?'500%':(r.reinforcement*100).toFixed(0)+'%'}</span></div>
+    <hr style="border:none;border-top:1px solid var(--bdr2);margin:7px 0">
+    <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-family:var(--mono);font-size:6.5px;color:var(--txt3)">CONFIDENCE</span><span style="font-family:var(--mono);font-size:9px;color:var(--txt2)">${(r.confidence*100).toFixed(0)}%</span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-family:var(--mono);font-size:6.5px;color:var(--txt3)">TRAJECTORY</span><span style="font-family:var(--mono);font-size:8px;font-weight:700;color:${tColor}">${traj}</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="font-family:var(--mono);font-size:6.5px;color:var(--txt3)">SPREAD LIKELIHOOD</span><span style="font-family:var(--mono);font-size:8px;font-weight:700;color:${sColor}">${sLabel}</span></div>
+    <div style="margin-top:8px;font-family:var(--mono);font-size:7px;color:var(--txt3);font-style:italic;line-height:1.6">Pressure ${(r.pressure*100).toFixed(1)} · Deviation Δ${(r.deviation*100).toFixed(0)} · Regime ${r.regime}${r.domains.length>1?' · Cross-domain reinforcement active':''}</div>
+  </div>`;
+}
+
+function renderDrivers(r){
+  const drivers=[
+    {dm:'CONFLICT', ct:r.domains.includes('conflict')?.68:.12,  color:'var(--hot)',   rc:'NARRATIVE_SPIKE',            dir:r.acceleration>.03?'↑':'→'},
+    {dm:'ECONOMIC', ct:r.domains.includes('economic')?.52:.08,  color:'var(--warm)',  rc:'CROSS_DOMAIN_REINFORCEMENT', dir:'→'},
+    {dm:'POLITICAL',ct:r.domains.includes('political')?.47:.10, color:'var(--violet)',rc:'PERSISTENCE_INCREASE',        dir:r.acceleration>.03?'↑':'→'},
+    {dm:'ENERGY',   ct:r.domains.includes('energy')?.38:.06,    color:'var(--gold)',  rc:'ACCELERATION_UPSHIFT',        dir:'↓'},
+    {dm:'CLIMATE',  ct:r.domains.includes('climate')?.24:.04,   color:'var(--cool)',  rc:'STRUCTURAL_BASELINE',         dir:'→'},
+    {dm:'SOCIAL',   ct:r.domains.includes('social')?.18:.03,    color:'var(--pulse)', rc:'SINGLE_DOMAIN_NOISE',         dir:'→'},
+  ].sort((a,b)=>b.ct-a.ct);
+
+  const cascadeLinks=REGIONS.filter(x=>x.id!==r.id&&x.score>.2)
+    .map(x=>{
+      const inter=r.domains.filter(d=>x.domains.includes(d)).length;
+      const sim=inter/(new Set([...r.domains,...x.domains]).size);
+      return{name:x.name,score:sim*.6+(1-Math.abs(x.deviation-r.deviation))*.4,regime:x.regime,color:regimeColor(x.regime)};
+    }).sort((a,b)=>b.score-a.score).slice(0,5);
+
+  return`<div class="vs"><div class="vt">DOMAIN DRIVERS</div>
+    ${drivers.map(d=>`<div class="dr-row">
+      <div class="dr-hd"><span class="dr-dm">${d.dm}</span><span class="dr-ct">${(d.ct*100).toFixed(1)}% <span style="font-size:11px;color:${d.dir==='↑'?'var(--hot)':d.dir==='↓'?'var(--cool)':'var(--txt3)'}">${d.dir}</span></span></div>
+      <div class="dr-rc">${d.rc}</div>
+      <div class="dr-tr"><div class="dr-tf" style="width:${d.ct*100}%;background:${d.color}"></div></div>
+    </div>`).join('')}
+  </div>
+  <div class="vs"><div class="vt">ONION PRESSURE LAYERS</div>
+    <div style="display:flex;justify-content:center;padding:4px 0">${renderOnionSVG(r)}</div>
+  </div>
+  <div class="vs"><div class="vt">CASCADE LINKS — DOMAIN SIMILARITY</div>
+    ${cascadeLinks.map(lk=>`<div class="cascade-item">
+      <div style="flex:1"><div style="color:var(--txt);font-size:8px">${lk.name}</div>
+        <div class="cascade-bar"><div class="cascade-fill" style="width:${lk.score*100}%;background:${lk.color}"></div></div>
+      </div>
+      <span style="font-family:var(--mono);font-size:7.5px;color:${lk.color};margin-left:8px">${(lk.score*100).toFixed(0)}%</span>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderOnionSVG(r){
+  const[ri,gi,bi]=regimeRGB(r.regime);
+  const layers=[
+    {name:'POLITICAL',pct:r.domains.includes('political')?.68:.12,color:'#a855f7'},
+    {name:'CONFLICT', pct:r.domains.includes('conflict')?.88:.15, color:'#ff2d55'},
+    {name:'ECONOMIC', pct:r.domains.includes('economic')?.55:.10, color:'#ff8c00'},
+    {name:'ENERGY',   pct:r.domains.includes('energy')?.72:.08,   color:'#ffd700'},
+    {name:'CLIMATE',  pct:r.domains.includes('climate')?.34:.06,  color:'#00ff9d'},
+  ];
+  const radii=[80,64,48,32,16];const cx=110,cy=100;
+  let svg=`<svg width="220" height="200" viewBox="0 0 220 200" style="overflow:visible">`;
+  for(let i=0;i<layers.length;i++){
+    const{name,pct,color}=layers[i];const rad=radii[i];
+    const op=.14+pct*.5;const arcLen=2*Math.PI*rad*pct;
+    svg+=`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="none" stroke="${color}" stroke-width="14" opacity="${op*.5}"/>`;
+    svg+=`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="none" stroke="${color}" stroke-width="14" opacity="${op+.15}" stroke-dasharray="${arcLen} ${2*Math.PI*rad-arcLen}" transform="rotate(-90 ${cx} ${cy})"/>`;
+    const ang=-Math.PI/2+2*Math.PI*pct/2;
+    svg+=`<text x="${cx+Math.cos(ang)*(rad+22)}" y="${cy+Math.sin(ang)*(rad+22)}" font-family="Share Tech Mono" font-size="6" fill="${color}" opacity=".8" text-anchor="middle">${name} ${(pct*100).toFixed(0)}%</text>`;
+  }
+  svg+=`<circle cx="${cx}" cy="${cy}" r="10" fill="rgba(${ri},${gi},${bi},0.8)" stroke="rgba(${ri},${gi},${bi},0.4)" stroke-width="2"/>`;
+  svg+=`<text x="${cx}" y="${cy+3}" font-family="Rajdhani" font-size="7" fill="white" text-anchor="middle" font-weight="700">${r.regime[0]}</text>`;
+  return svg+`</svg>`;
+}
+
+function renderTraj(r){
+  const pE=Math.min(.96,Math.max(.04,.35*r.deviation+.28*Math.min(1,Math.abs(r.acceleration)*6)+.22*r.reinforcement));
+  const pS=Math.min(.96,Math.max(.04,.40*(1-r.deviation)));
+  const pD=Math.max(.04,1-pE-pS);const tot=pE+pS+pD;
+  const hs=[
+    {lbl:'SHORT (days–weeks)',pE:pE/tot,pS:pS/tot,pD:pD/tot,conf:r.confidence},
+    {lbl:'MEDIUM (months)',pE:(pE/tot)*.72+.28*.333,pS:(pS/tot)*.78+.22*.333,pD:0,conf:r.confidence*.82},
+    {lbl:'LONG (years)',pE:(pE/tot)*.48+.52*.333,pS:(pS/tot)*.55+.45*.333,pD:0,conf:r.confidence*.55},
+  ].map(h=>{if(!h.pD){const t2=h.pE+h.pS;h.pD=Math.max(.04,1-t2);}return h;});
+  return`<div class="vs"><div class="vt">MULTI-HORIZON FORECAST</div>
+    ${hs.map(h=>{const t2=h.pE+h.pS+h.pD;return`<div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdr2)">
+      <div style="font-family:var(--mono);font-size:6.5px;color:var(--txt3);letter-spacing:.17em;margin-bottom:6px">${h.lbl}</div>
+      <div class="fc-row"><span class="fcl">ESCALATE</span><div class="fct"><div class="fcf" style="width:${(h.pE/t2*100).toFixed(0)}%;background:var(--hot)"></div></div><span class="fcp c-hot">${(h.pE/t2*100).toFixed(0)}%</span></div>
+      <div class="fc-row"><span class="fcl">STABILIZE</span><div class="fct"><div class="fcf" style="width:${(h.pS/t2*100).toFixed(0)}%;background:var(--cool)"></div></div><span class="fcp c-cool">${(h.pS/t2*100).toFixed(0)}%</span></div>
+      <div class="fc-row"><span class="fcl">DIFFUSE</span><div class="fct"><div class="fcf" style="width:${(h.pD/t2*100).toFixed(0)}%;background:var(--txt3)"></div></div><span class="fcp c-txt2">${(h.pD/t2*100).toFixed(0)}%</span></div>
+      <div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-top:4px">CONF ${(h.conf*100).toFixed(0)}%</div>
+    </div>`}).join('')}
+  </div>
+  <div class="vs"><div class="vt">FALSIFICATION CONDITIONS</div>
+    ${r.domains.map(d=>`<div class="fi"><div class="fd"></div>${d.toUpperCase()} deviation falls below ${(r.deviation*.42).toFixed(2)} for 3+ consecutive buckets · HEURISTIC</div>`).join('')}
+    <div class="fi"><div class="fd"></div>Acceleration reverses sign and persists negative for 2+ periods · HEURISTIC</div>
+    <div class="fi"><div class="fd"></div>Cross-domain reinforcement drops below 0.20 without signal correlation · HEURISTIC</div>
+    <div class="fi"><div class="fd"></div>Pressure drops 40%+ without observed external trigger · HEURISTIC</div>
+  </div>`;
+}
+
+function renderEvidence(r){
+  const ev=SOURCES.filter(s=>r.domains.includes(s.dom)||s.region===r.name||r.name.includes(s.region)).slice(0,9);
+  if(!ev.length)return`<div style="font-family:var(--mono);font-size:8px;color:var(--txt3);padding:14px 0">No evidence indexed for this region.</div>`;
+  return`<div class="vs"><div class="vt">RAW SOURCE INDEX — ${r.name.toUpperCase()}</div>
+    ${ev.map(s=>`<div class="ev-item">
+      <div class="evt">${s.txt}</div>
+      <div class="evm"><span class="evd ${s.cls}">${s.dom.toUpperCase()}</span>
+        <span style="font-family:var(--mono);font-size:6.5px;color:var(--pulse)">${s.score}</span>
+        <span class="evt2">T-${s.age}</span></div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderProv(r){
+  return`<div class="vs"><div class="vt">PROVENANCE CHAIN</div>
+    <div style="font-family:var(--mono);font-size:7px;color:var(--txt3);line-height:1.9">
+      <div style="color:var(--txt2);margin-bottom:2px">● GDELT 2.0 Global Knowledge Graph</div>
+      <div style="margin-left:12px;margin-bottom:2px">└ Event count: ${Math.floor(Math.random()*40+10)} records · CAMEO: ${['010','020','030','040'].slice(0,r.domains.length).join(', ')}</div>
+      <div style="margin-left:12px;margin-bottom:8px">└ Hash: ${Math.random().toString(36).substr(2,12).toUpperCase()}</div>
+      <div style="color:var(--txt2);margin-bottom:2px">● RSS Domain Feeds</div>
+      <div style="margin-left:12px;margin-bottom:8px">└ Sources: Al-Jazeera, Reuters, BBC, AP · Articles: ${Math.floor(Math.random()*12+3)}</div>
+      <div style="color:var(--txt2);margin-bottom:2px">● OpenAQ Air Quality</div>
+      <div style="margin-left:12px;margin-bottom:8px">└ PM2.5 Δ: ${(r.deviation*3.8).toFixed(2)}σ above 7-day baseline</div>
+      <div style="color:var(--txt2);margin-bottom:2px">● Open-Meteo Climate</div>
+      <div style="margin-left:12px">└ Anomaly: ${r.deviation.toFixed(3)} · z-score: ${(r.deviation*4.2).toFixed(2)}</div>
+    </div>
+  </div>
+  <div class="vs"><div class="vt">MODEL VERSION</div>
+    <div class="vbar"><span class="vl">SVS ENGINE</span><span></span><span class="vv">v2.4.1</span></div>
+    <div class="vbar"><span class="vl">CUSUM WINDOW</span><span></span><span class="vv">15 min</span></div>
+    <div class="vbar"><span class="vl">BASELINE</span><span></span><span class="vv">6h/24h/7d MAD</span></div>
+    <div class="vbar"><span class="vl">COUPLING</span><span></span><span class="vv">Pearson ×${r.domains.length}</span></div>
+    <div class="vbar"><span class="vl">SHAPLEY</span><span></span><span class="vv">ACTIVE</span></div>
+  </div>`;
+}
+
+// ── Deep Dive ──
+function openDeepDive(){
+  const r=REGIONS.find(x=>x.id===selId);if(!r)return;
+  document.getElementById('dd-title').textContent=r.name;
+  document.getElementById('dd-meta').textContent=`P:${(r.pressure*100).toFixed(1)} · Δ:${(r.deviation*100).toFixed(0)} · C:${(r.confidence*100).toFixed(0)}%`;
+  const pE=Math.min(.96,Math.max(.04,.35*r.deviation+.28*Math.min(1,Math.abs(r.acceleration)*6)+.22*r.reinforcement));
+  const pS=Math.min(.96,Math.max(.04,.40*(1-r.deviation)));
+  const pD=Math.max(.04,1-pE-pS);const tot=pE+pS+pD;
+  const spill=Math.min(1,r.reinforcement*.55+(r.domains.length/6)*.3);
+  const cont=Math.max(.04,1-spill*.72-Math.abs(r.acceleration)*1.8);
+  const neighbors=REGIONS.filter(x=>x.id!==r.id).map(x=>{
+    const dist=Math.sqrt((x.lat-r.lat)**2+(x.lon-r.lon)**2);
+    return{...x,dist};
+  }).sort((a,b)=>a.dist-b.dist).slice(0,8);
+  const avgP=neighbors.reduce((s,x)=>s+x.pressure,0)/neighbors.length;
+  document.getElementById('dd-body').innerHTML=`
+    <div class="dd-section"><div class="dd-sh">REGIONAL FIELD · NEIGHBOR CONTEXT</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px">
+        <div class="dc"><div class="dcl">NEIGHBORS</div><div class="dcv c-pulse" style="font-size:14px">${neighbors.length}</div></div>
+        <div class="dc"><div class="dcl">AVG PRESSURE</div><div class="dcv c-warm" style="font-size:14px">${(avgP*100).toFixed(1)}</div></div>
+        <div class="dc"><div class="dcl">GRADIENT →</div><div class="dcv c-txt2" style="font-size:14px">SE</div></div>
+      </div>
+      ${neighbors.slice(0,5).map((n,i)=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+        <span style="font-family:var(--mono);font-size:7px;color:var(--txt3);width:14px">${i+1}</span>
+        <div style="flex:1"><div style="font-size:8.5px;color:var(--txt)">${n.name}</div>
+          <div style="height:2px;background:rgba(255,255,255,.04);border-radius:1px;margin-top:2px;overflow:hidden"><div style="height:100%;width:${n.pressure*100}%;background:${regimeColor(n.regime)};border-radius:1px"></div></div>
+        </div>
+        <span style="font-family:var(--mono);font-size:7.5px;color:${regimeColor(n.regime)}">Δ${(n.deviation*100).toFixed(0)}</span>
+      </div>`).join('')}
+    </div>
+    <div class="dd-section"><div class="dd-sh">DOMAIN BREAKDOWN</div>
+      ${r.domains.map(d=>`<div style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:7px;color:var(--txt2);margin-bottom:2px">
+          <span style="text-transform:uppercase;color:${regimeColor(r.regime)}">${d}</span><span>${(r.deviation*0.85*100).toFixed(0)}%</span>
+        </div>
+        <div style="height:3px;background:rgba(255,255,255,.04);border-radius:1px;overflow:hidden"><div style="height:100%;width:${r.deviation*85}%;background:${regimeColor(r.regime)}"></div></div>
+      </div>`).join('')}
+    </div>
+    <div class="dd-section"><div class="dd-sh">CASCADE LINKS — HIDDEN CONNECTIONS</div>
+      ${REGIONS.filter(x=>x.id!==r.id&&x.score>.2).sort((a,b)=>b.score-a.score).slice(0,5).map(lk=>{
+        const sim=r.domains.filter(d=>lk.domains.includes(d)).length/Math.max(1,new Set([...r.domains,...lk.domains]).size);
+        return`<div class="cascade-item"><div style="flex:1"><div style="color:var(--txt);font-size:8px">${lk.name}</div>
+          <div class="cascade-bar"><div class="cascade-fill" style="width:${sim*100}%;background:${regimeColor(lk.regime)}"></div></div>
+        </div><span style="font-family:var(--mono);font-size:7.5px;color:${regimeColor(lk.regime)};margin-left:8px">${(sim*100).toFixed(0)}%</span></div>`;
+      }).join('')}
+    </div>
+    <div class="dd-section"><div class="dd-sh">FORECAST WINDOW · PREDICTION</div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:7.5px;margin-bottom:8px">
+        <span style="color:var(--txt3)">NEXT REGIME</span><span style="color:var(--hot)">${pE/tot>.5?'EMERGENT':pS/tot>.5?'STABLE':'COUPLED'}</span>
+      </div>
+      <div class="fc-row"><span class="fcl">ESCALATE</span><div class="fct"><div class="fcf" style="width:${(pE/tot*100).toFixed(0)}%;background:var(--hot)"></div></div><span class="fcp c-hot">${(pE/tot*100).toFixed(0)}%</span></div>
+      <div class="fc-row"><span class="fcl">STABILIZE</span><div class="fct"><div class="fcf" style="width:${(pS/tot*100).toFixed(0)}%;background:var(--cool)"></div></div><span class="fcp c-cool">${(pS/tot*100).toFixed(0)}%</span></div>
+      <div class="fc-row"><span class="fcl">DIFFUSE</span><div class="fct"><div class="fcf" style="width:${(pD/tot*100).toFixed(0)}%;background:var(--txt3)"></div></div><span class="fcp c-txt2">${(pD/tot*100).toFixed(0)}%</span></div>
+    </div>
+    <div class="dd-section"><div class="dd-sh">FALSIFICATION CONDITIONS</div>
+      ${r.domains.map(d=>`<div class="fi"><div class="fd"></div>${d.toUpperCase()} deviation falls below ${(r.deviation*.42).toFixed(2)} for 3+ buckets · HEURISTIC</div>`).join('')}
+      <div class="fi"><div class="fd"></div>Acceleration reverses sign and persists negative for 2+ periods · HEURISTIC</div>
+      <div class="fi"><div class="fd"></div>Cross-domain reinforcement drops below 0.20 · HEURISTIC</div>
+    </div>
+    <div class="dd-section" style="border:none"><div class="dd-sh">INTERVENTION WINDOW</div>
+      <div class="dg">
+        <div class="dc"><div class="dcl">TIMING</div><div class="dcv" style="font-size:11px;color:${r.acceleration>.09?'var(--hot)':'var(--warm)'}">${r.acceleration>.09?'LATE':r.acceleration>.05?'CLOSING':r.acceleration>.03?'EARLY':'MONITORING'}</div></div>
+        <div class="dc"><div class="dcl">SPILLOVER</div><div class="dcv c-hot">${(spill*100).toFixed(0)}%</div></div>
+        <div class="dc"><div class="dcl">CONTAINMENT</div><div class="dcv c-cool">${(cont*100).toFixed(0)}%</div></div>
+        <div class="dc"><div class="dcl">ACTIVE DOMAINS</div><div class="dcv c-pulse">${r.domains.length} / 6</div></div>
+      </div>
+    </div>`;
+  document.getElementById('deepdive').classList.add('vis');
+}
+function closeDeepDive(){document.getElementById('deepdive').classList.remove('vis');}
+
+// ── Panel controls ──
+function setNav(el,v){
+  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));el.classList.add('on');
+  closePanel('timeline-panel');closePanel('export-panel');closePanel('model-panel');
+  if(v==='timeline'){openTimeline();}
+  else if(v==='export'){document.getElementById('export-panel').classList.add('vis');}
+  else if(v==='model'){openModel();}
+}
+function closePanel(id){document.getElementById(id).classList.remove('vis');}
+
+function openTimeline(){
+  const p=document.getElementById('timeline-panel');p.classList.add('vis');
+  const b=document.getElementById('tl-body');
+  b.innerHTML=TIMELINE_EVENTS.map(e=>`<div class="tl-row">
+    <div class="tl-time">${e.time} UTC</div>
+    <div class="tl-dot" style="color:${e.color};background:${e.color}22"></div>
+    <div class="tl-content">
+      <div class="tl-region">${e.event} <span class="tl-badge rbadge" style="color:${e.color};border-color:${e.color}44;background:${e.color}18">${e.regime}</span></div>
+      <div class="tl-detail">${e.region} · ${e.detail}</div>
+    </div>
+  </div>`).join('');
+}
+
+function openModel(){
+  document.getElementById('model-panel').classList.add('vis');
+  const hot=REGIONS.filter(r=>r.regime==='EMERGENT'||r.regime==='SHIFTING');
+  document.getElementById('model-cards').innerHTML=hot.map(r=>`
+    <div style="margin-bottom:10px;padding:10px;border:1px solid var(--bdr);background:rgba(5,10,30,.5);cursor:pointer;border-left:2px solid ${regimeColor(r.regime)}" onclick="closePanel('model-panel');document.querySelector('.ntab.on').classList.remove('on');document.querySelector('.ntab').classList.add('on');selectRegion('${r.id}')">
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+        <span style="font-family:var(--disp);font-size:10px;font-weight:700;color:var(--txt)">${r.name}</span>
+        <span style="font-family:var(--disp);font-size:10px;font-weight:700;color:${regimeColor(r.regime)}">${r.regime}</span>
+      </div>
+      <div class="vbar"><span class="vl">PRESSURE</span>${B(r.pressure,'var(--violet)')}<span class="vv">${(r.pressure*100).toFixed(0)}%</span></div>
+      <div class="vbar"><span class="vl">DEVIATION</span>${B(r.deviation,'var(--hot)')}<span class="vv">Δ${(r.deviation*100).toFixed(0)}</span></div>
+      <div style="font-family:var(--mono);font-size:6px;color:var(--txt3);margin-top:4px">${r.domains.join(' · ').toUpperCase()}</div>
+    </div>`).join('');
+}
+
+// ── Differential strip ──
+function renderDiff(){
+  if(!compareA||!compareB)return;
+  const strip=document.getElementById('diff-strip');strip.classList.add('vis');
+  document.getElementById('ds-ab').textContent=`A: ${compareA.name.split('—')[0]} vs B: ${compareB.name.split('—')[0]}`;
+  const dP=(compareA.pressure-compareB.pressure)*100;
+  const dD=(compareA.deviation-compareB.deviation)*100;
+  const dC=(compareA.confidence-compareB.confidence)*100;
+  const c=v=>v>0?'var(--hot)':v<0?'var(--cool)':'var(--txt2)';
+  document.getElementById('ds-deltas').innerHTML=`
+    <div class="ds-delta"><div class="ds-dl">Δ PRESSURE</div><div class="ds-dv" style="color:${c(dP)}">${dP>0?'+':''}${dP.toFixed(1)}</div></div>
+    <div style="width:1px;height:28px;background:var(--bdr)"></div>
+    <div class="ds-delta"><div class="ds-dl">Δ DEVIATION</div><div class="ds-dv" style="color:${c(dD)}">${dD>0?'+':''}${dD.toFixed(1)}</div></div>
+    <div style="width:1px;height:28px;background:var(--bdr)"></div>
+    <div class="ds-delta"><div class="ds-dl">Δ CONFIDENCE</div><div class="ds-dv" style="color:${c(dC)}">${dC>0?'+':''}${dC.toFixed(1)}%</div></div>
+    <div style="width:1px;height:28px;background:var(--bdr)"></div>
+    <div class="ds-delta"><div class="ds-dl">Δ REGIME</div><div class="ds-dv" style="font-size:9px;color:var(--txt2)">${compareA.regime===compareB.regime?'SAME':compareA.regime+'→'+compareB.regime}</div></div>`;
+}
+function closeDiff(){compareA=null;compareB=null;document.getElementById('diff-strip').classList.remove('vis');}
+
+// ── Export functions ──
+function exportJSON(){
+  const r=REGIONS.find(x=>x.id===selId);if(!r)return;
+  const blob=new Blob([JSON.stringify({region:r,timestamp:new Date().toISOString(),modelVersion:'2.4.1',sources:SOURCES.filter(s=>r.domains.includes(s.dom)).slice(0,5)},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`blanc-pulse-${r.id}-${Date.now()}.json`;a.click();
+  showToast('JSON BRIEF EXPORTED');
+}
+function exportCSV(){
+  const rows=[['region','regime','pressure','deviation','acceleration','confidence','domains'],...REGIONS.map(r=>[r.name,r.regime,(r.pressure*100).toFixed(1),(r.deviation*100).toFixed(1),(r.acceleration*100).toFixed(2),(r.confidence*100).toFixed(0),r.domains.join('|')])];
+  const blob=new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='blanc-pulse-regions.csv';a.click();
+  showToast('CSV EXPORTED');
+}
+function exportHTML(){
+  const r=REGIONS.find(x=>x.id===selId);if(!r)return;
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BLANC PULSE — ${r.name}</title><style>body{font-family:monospace;background:#000;color:#aaa;padding:20px}h1{color:#00c8ff}table{border-collapse:collapse;width:100%}td,th{border:1px solid #333;padding:6px 10px}th{color:#00c8ff}</style></head><body><h1>BLANC // PULSE — STRUCTURAL BRIEF</h1><p><b>Region:</b> ${r.name} | <b>Regime:</b> ${r.regime} | <b>Generated:</b> ${new Date().toISOString()}</p><table><tr><th>Metric</th><th>Value</th></tr><tr><td>Pressure</td><td>${(r.pressure*100).toFixed(1)}%</td></tr><tr><td>Deviation</td><td>Δ${(r.deviation*100).toFixed(1)}</td></tr><tr><td>Confidence</td><td>${(r.confidence*100).toFixed(0)}%</td></tr><tr><td>Domains</td><td>${r.domains.join(', ')}</td></tr></table></body></html>`;
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`blanc-brief-${r.id}.html`;a.click();
+  showToast('HTML BRIEF EXPORTED');
+}
+function copyURL(){
+  const url=`${window.location.href.split('?')[0]}?region=${selId}&mode=${mapMode}&horizon=${horizon}`;
+  navigator.clipboard.writeText(url).then(()=>showToast('URL COPIED TO CLIPBOARD'));
+}
+
+// ── Domain filter ──
+function filterByDomain(d){
+  domainFilter=domainFilter===d?null:d;
+  buildElist();
+  showToast(domainFilter?'FILTER: '+domainFilter.toUpperCase():'FILTER CLEARED');
+}
+
+// ── Other controls ──
+function setMapMode(el,v){mapMode=v;document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+function toggleLayer(el){el.classList.toggle('on');const l=el.dataset.layer;activeLayers.has(l)?activeLayers.delete(l):activeLayers.add(l);}
+function setOpMode(el,v){opMode=v;document.querySelectorAll('.ombtn').forEach(b=>b.classList.remove('on'));el.classList.add('on');document.getElementById('opm').textContent=v;}
+function setHorizon(el,v){horizon=v;document.querySelectorAll('.mbtn').forEach(b=>{if(['NOW','3M','1Y','5Y'].includes(b.textContent))b.classList.remove('on')});el.classList.add('on');document.getElementById('h-hz').textContent=v;showToast('HORIZON: '+v);}
+function setTab(el,v){inspTab=v;document.querySelectorAll('.itab').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');renderInspector();}
+function filterRegions(){buildElist();}
+
+// Toast
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('vis');
+  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('vis'),2200);
+}
+
+// Clock
+setInterval(()=>{document.getElementById('clk').textContent=new Date().toISOString().replace('T',' ').substring(0,19)+' UTC';},1000);
+
+// Animate pressure rings
+const BASE_PRESSURES={c:87,e:62,k:44,n:71,p:55};
+setInterval(()=>{
+  for(const[k,base]of Object.entries(BASE_PRESSURES)){
+    const el=document.getElementById('pi-'+k);
+    if(el)el.querySelector('span').textContent=Math.max(10,Math.min(99,base+Math.round((Math.random()-.5)*4)));
+  }
+},3200);
+
+// ── INIT ──
+buildElist();buildEtags();buildTicker();selectRegion('nang');
+</script>
+</body>
+</html>
